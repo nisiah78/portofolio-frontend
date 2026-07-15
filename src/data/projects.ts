@@ -30,7 +30,7 @@ export const projects: Record<Locale, Project[]> = {
       slug: "ubiweb",
       name: "Ubiweb",
       period: "Dec 2023 — Dec 2025",
-      role: "Senior PHP Engineer · part-time",
+      role: "Senior PHP Engineer",
       description:
         "Multi-tenant digital-marketing platform for SMEs. Micro-services and REST APIs, an AI service for automated review/email responses, Packagist SDKs, and real-time sync with Google, Meta, Yext and AWS.",
       tags: ["symfony", "mongodb", "temporal", "openai", "redis"],
@@ -128,7 +128,7 @@ export const projects: Record<Locale, Project[]> = {
       slug: "ubiweb",
       name: "Ubiweb",
       period: "déc. 2023 — déc. 2025",
-      role: "Développeur PHP Senior · temps partiel",
+      role: "Développeur PHP Senior",
       description:
         "Plateforme de marketing digital multi-tenant pour PME. Micro-services et API REST, service IA pour réponses automatiques aux avis/emails, SDKs Packagist et synchronisation temps réel avec Google, Meta, Yext et AWS.",
       tags: ["symfony", "mongodb", "temporal", "openai", "redis"],
@@ -226,7 +226,7 @@ export const projects: Record<Locale, Project[]> = {
       slug: "ubiweb",
       name: "Ubiweb",
       period: "Dez. 2023 — Dez. 2025",
-      role: "Senior PHP-Entwickler · Teilzeit",
+      role: "Senior PHP-Entwickler",
       description:
         "Multi-Tenant-Plattform für digitales Marketing für KMUs. Microservices und REST-APIs, ein KI-Service für automatisierte Bewertungs-/E-Mail-Antworten, Packagist-SDKs und Echtzeit-Synchronisation mit Google, Meta, Yext und AWS.",
       tags: ["symfony", "mongodb", "temporal", "openai", "redis"],

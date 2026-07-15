@@ -30,7 +30,7 @@ export const history: Record<Locale, HistoryEntry[]> = {
     {
       period: "2023 — 2025",
       role: "Senior PHP Engineer",
-      org: "Ubiweb · Canada — Part-time",
+      org: "Ubiweb · Canada",
       summary:
         "Digital-marketing solution on a multi-tenant platform for SMEs and investors.",
       highlights: [
@@ -59,7 +59,7 @@ export const history: Record<Locale, HistoryEntry[]> = {
     {
       period: "2020 — 2025",
       role: "Technical Lead",
-      org: "Kleap · Switzerland — Part-time",
+      org: "Kleap · Switzerland",
       summary:
         "AI-powered website builder and content-creation tools.",
       highlights: [
@@ -128,7 +128,7 @@ export const history: Record<Locale, HistoryEntry[]> = {
     {
       period: "2023 — 2025",
       role: "Développeur PHP Senior",
-      org: "Ubiweb · Canada — Temps partiel",
+      org: "Ubiweb · Canada",
       summary:
         "Solution de marketing digital sur une plateforme multi-tenant destinée aux PME et investisseurs.",
       highlights: [
@@ -157,7 +157,7 @@ export const history: Record<Locale, HistoryEntry[]> = {
     {
       period: "2020 — 2025",
       role: "Lead Technique",
-      org: "Kleap · Suisse — Temps partiel",
+      org: "Kleap · Suisse",
       summary:
         "Website builder et outils de création de contenu intégrant des fonctionnalités IA.",
       highlights: [
@@ -226,7 +226,7 @@ export const history: Record<Locale, HistoryEntry[]> = {
     {
       period: "2023 — 2025",
       role: "Senior PHP-Entwickler",
-      org: "Ubiweb · Kanada — Teilzeit",
+      org: "Ubiweb · Kanada",
       summary:
         "Digitale Marketinglösung auf einer Multi-Tenant-Plattform für KMUs und Investoren.",
       highlights: [
@@ -255,7 +255,7 @@ export const history: Record<Locale, HistoryEntry[]> = {
     {
       period: "2020 — 2025",
       role: "Technical Lead",
-      org: "Kleap · Schweiz — Teilzeit",
+      org: "Kleap · Schweiz",
       summary:
         "KI-gestützter Website-Builder und Content-Erstellungstools.",
       highlights: [
