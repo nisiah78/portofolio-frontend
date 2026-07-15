@@ -1,0 +1,46 @@
+{
+  "nav": {
+    "about": "à propos",
+    "stack": "stack",
+    "work": "projets",
+    "history": "parcours",
+    "services": "services",
+    "contact": "contact"
+  },
+  "meta": {
+    "available": "disponible pour des missions freelance et des postes"
+  },
+  "hero": {
+    "eyebrow": "ingénieur logiciel fullstack senior",
+    "tagline": "Je conçois des plateformes web typées et évolutives — de bout en bout, de Symfony à Next.js.",
+    "lead": "Je conçois et développe des plateformes web robustes, typées et évolutives — des back-ends Symfony et PHP aux front-ends React et Next.js. Dix ans à livrer des produits avec des équipes à travers l'Europe et au-delà."
+  },
+  "cta": {
+    "work": "projets",
+    "cv": "cv"
+  },
+  "about": {
+    "statement": "Dix ans à transformer des exigences complexes en produits qui sortent — et qui tiennent dans le temps.",
+    "body": "Depuis dix ans, je travaille sur toute la stack, avec de solides racines en PHP et Symfony (7+ ans) et quatre ans de développement front-end en React, TypeScript et Next.js. J'ai collaboré avec des équipes internationales — Unlocked (NL), Kleap (CH), Ubiweb (CA) — comme ingénieur, tech lead et membre fondateur. J'attache de l'importance à une architecture propre, à des contrats typés entre le front et le back, et à des produits durables."
+  },
+  "contact": {
+    "title": "Construisons quelque chose qui dure.",
+    "lead": "Un projet, un poste ou une idée ? Je suis actuellement ouvert à de belles opportunités."
+  },
+  "services": {
+    "fullstack": "Développement web fullstack",
+    "backend": "Architecture back-end & API",
+    "frontend": "Développement front-end",
+    "devops": "DevOps & déploiement",
+    "ai": "Intégration de l'IA"
+  },
+  "search": {
+    "placeholder": "Rechercher une techno — Symfony, React, Docker…",
+    "noResults": "Aucune expérience ne correspond à",
+    "navigate": "naviguer",
+    "select": "sélectionner",
+    "close": "fermer",
+    "result": "résultat",
+    "results": "résultats"
+  }
+}

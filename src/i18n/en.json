@@ -1,0 +1,46 @@
+{
+  "nav": {
+    "about": "about",
+    "stack": "stack",
+    "work": "projects",
+    "history": "history",
+    "services": "services",
+    "contact": "contact"
+  },
+  "meta": {
+    "available": "available for select freelance & full-time roles"
+  },
+  "hero": {
+    "eyebrow": "senior fullstack engineer",
+    "tagline": "I build typed, scalable web platforms — end to end, from Symfony to Next.js.",
+    "lead": "I design and build robust, typed, scalable web platforms — from Symfony and PHP back-ends to React and Next.js front-ends. Ten years shipping products with teams across Europe and beyond."
+  },
+  "cta": {
+    "work": "view_projects",
+    "cv": "download_cv"
+  },
+  "about": {
+    "statement": "Ten years turning complex requirements into products that ship — and keep running.",
+    "body": "For a decade I've worked across the full stack, with deep roots in PHP and Symfony (7+ years) and four years building front-ends in React, TypeScript and Next.js. I've partnered with international teams — Unlocked (NL), Kleap (CH), Ubiweb (CA) — as engineer, tech lead and founding team member, and I care about clean architecture, typed contracts between front and back, and shipping things that last."
+  },
+  "contact": {
+    "title": "Let's build something that lasts.",
+    "lead": "Have a project, a role, or an idea? I'm currently open to select opportunities."
+  },
+  "services": {
+    "fullstack": "Fullstack Web Development",
+    "backend": "Backend Architecture & APIs",
+    "frontend": "Frontend Engineering",
+    "devops": "DevOps & Deployment",
+    "ai": "AI Integration"
+  },
+  "search": {
+    "placeholder": "Search stack — Symfony, React, Docker…",
+    "noResults": "No experience matches",
+    "navigate": "navigate",
+    "select": "select",
+    "close": "close",
+    "result": "result",
+    "results": "results"
+  }
+}

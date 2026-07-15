@@ -1,0 +1,406 @@
+@import "tailwindcss";
+
+/* ---- Design tokens (default = dark) ---------------------------------- */
+:root,
+:root[data-theme="dark"] {
+  --bg: #0c0d10;
+  --surface: #131519;
+  --fg: #e6e8ec;
+  --muted: #8a8f98;
+  --faint: #565b64;
+  --line: #23262d;
+  --grid: rgba(255, 255, 255, 0.028);
+  --header-bg: rgba(12, 13, 16, 0.82);
+  --accent: #e8722c;
+  --accent-soft: rgba(232, 114, 44, 0.13);
+  --syn-str: #7fb77e;
+  --syn-num: #7aa2d6;
+  /* cloudscape — luminous fog on a dark sky */
+  --cloud-core: rgba(58, 71, 100, 0.95);
+  --cloud-halo: rgba(138, 165, 214, 0.4);
+  --cloud-glow: rgba(232, 114, 44, 0.24);
+  /* living aurora glows */
+  --aurora-1: rgba(232, 114, 44, 0.48);
+  --aurora-2: rgba(78, 128, 226, 0.42);
+  --aurora-3: rgba(150, 92, 224, 0.38);
+  --header-tint: rgba(232, 114, 44, 0.08);
+  --hero-top: #171b22;
+}
+
+:root[data-theme="light"] {
+  --bg: #f7f6f3;
+  --surface: #ffffff;
+  --fg: #16181c;
+  --muted: #5c6169;
+  --faint: #9aa0a8;
+  --line: #e3e1db;
+  --grid: transparent; /* no grid in light — a blurred code mist is used instead */
+  --header-bg: rgba(247, 246, 243, 0.82);
+  --accent: #c6551b;
+  --accent-soft: rgba(198, 85, 27, 0.1);
+  --syn-str: #3f7a43;
+  --syn-num: #2e5ea8;
+  /* cloudscape — pure white cumulus (definition comes from the code mist behind) */
+  --cloud-core: rgba(255, 255, 255, 1);
+  --cloud-halo: rgba(255, 255, 255, 0.72);
+  --cloud-glow: rgba(198, 85, 27, 0.16);
+  /* living aurora glows */
+  --aurora-1: rgba(198, 85, 27, 0.28);
+  --aurora-2: rgba(78, 128, 226, 0.24);
+  --aurora-3: rgba(150, 92, 224, 0.22);
+  --header-tint: rgba(198, 85, 27, 0.06);
+  --hero-top: #ffffff;
+}
+
+/* ---- Map tokens to Tailwind theme (bg-surface, text-fg, …) ----------- */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-syn-str: var(--syn-str);
+  --color-syn-num: var(--syn-num);
+  --font-mono: var(--font-ibm-plex-mono), ui-monospace, monospace;
+  --font-sans: var(--font-ibm-plex-sans), system-ui, sans-serif;
+}
+
+/* ---- Base ------------------------------------------------------------ */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  /* faint terminal grid */
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+/* ---- Reveal-on-scroll ------------------------------------------------ */
+/* Content is visible by default; the hidden state is only armed once JS
+   sets [data-anim] on the element, so a no-JS visit still shows everything. */
+[data-reveal][data-anim] {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+[data-reveal][data-shown] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  [data-reveal][data-anim] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ---- Octagon clip (hero portrait: ring, gap and image share it) ------ */
+.nn-octagon {
+  clip-path: polygon(
+    30% 0,
+    70% 0,
+    100% 30%,
+    100% 70%,
+    70% 100%,
+    30% 100%,
+    0 70%,
+    0 30%
+  );
+}
+
+/* ---- Keyframes (ported from the source design) ----------------------- */
+@keyframes nn-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.82);
+  }
+}
+@keyframes nn-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes nn-blink {
+  0%,
+  55% {
+    opacity: 1;
+  }
+  56%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes nn-pop {
+  0% {
+    opacity: 0;
+    transform: translateX(-14px) scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+/* Message-bubble that bounces out of the timeline (back-out easing = overshoot). */
+.nn-pop {
+  animation: nn-pop 0.42s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* History: experiences rise in one by one on scroll (staggered via inline delay).
+   Hidden state is only armed once JS sets [data-anim]; a no-JS visit shows all. */
+[data-history][data-anim] .nn-tl-item {
+  opacity: 0;
+  transform: translateY(2rem);
+}
+[data-history][data-shown] .nn-tl-item {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.55s ease,
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-history][data-anim] .nn-tl-item {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Contact podium: the three bars rise in one by one, then the trophy pops in. */
+[data-podium] .nn-bar,
+[data-podium] .nn-zoom,
+[data-podium] .nn-confetti {
+  opacity: 0;
+}
+[data-podium][data-play] .nn-bar {
+  animation: nn-podium-rise 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+/* champagne + medal: zoom up then bounce back to normal size */
+[data-podium][data-play] .nn-zoom {
+  animation: nn-pop-zoom 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+/* confetti fly outward — direction comes from a rotated wrapper (no per-piece vars) */
+[data-podium][data-play] .nn-confetti {
+  animation: nn-confetti-fly 0.85s ease-out both;
+}
+@keyframes nn-podium-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes nn-pop-zoom {
+  0% {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+  55% {
+    opacity: 1;
+    transform: scale(1.4);
+  }
+  78% {
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes nn-confetti-fly {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0);
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-44px) scale(1) rotate(200deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-podium] .nn-bar,
+  [data-podium] .nn-zoom,
+  [data-podium] .nn-confetti {
+    opacity: 1;
+  }
+}
+@keyframes nn-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+/* ---- Cloudscape ------------------------------------------------------ */
+/* Living aurora — large colour fields that endlessly drift, breathe and cross,
+   so the whole background feels alive instead of static. */
+.nn-aurora {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  will-change: transform;
+}
+.nn-aurora-1 {
+  left: -16vw;
+  top: -12vh;
+  width: 62vw;
+  height: 62vw;
+  background: radial-gradient(circle, var(--aurora-1), transparent 66%);
+  animation: nn-aurora-a 22s ease-in-out infinite;
+}
+.nn-aurora-2 {
+  right: -18vw;
+  top: 6vh;
+  width: 56vw;
+  height: 56vw;
+  background: radial-gradient(circle, var(--aurora-2), transparent 66%);
+  animation: nn-aurora-b 28s ease-in-out infinite;
+}
+.nn-aurora-3 {
+  left: 22vw;
+  bottom: -28vh;
+  width: 66vw;
+  height: 66vw;
+  background: radial-gradient(circle, var(--aurora-3), transparent 66%);
+  animation: nn-aurora-c 25s ease-in-out infinite;
+}
+@keyframes nn-aurora-a {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(12vw, 9vh) scale(1.22);
+  }
+  66% {
+    transform: translate(5vw, -7vh) scale(0.9);
+  }
+}
+@keyframes nn-aurora-b {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  40% {
+    transform: translate(-13vw, 7vh) scale(1.16);
+  }
+  70% {
+    transform: translate(-5vw, -9vh) scale(0.92);
+  }
+}
+@keyframes nn-aurora-c {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  35% {
+    transform: translate(-9vw, -7vh) scale(1.12);
+  }
+  70% {
+    transform: translate(9vw, -3vh) scale(1.28);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nn-aurora {
+    animation: none;
+  }
+}
+
+/* A fluffy cloud bank built from overlapping soft puffs anchored at the bottom. */
+.nn-cloud {
+  will-change: transform;
+  background:
+    /* soft halo / fog base for definition against the sky */
+    radial-gradient(135% 80% at 50% 128%, var(--cloud-halo) 0%, transparent 72%),
+    /* individual cumulus puffs (larger, fuller bank) */
+    radial-gradient(32% 52% at 10% 100%, var(--cloud-core) 0%, transparent 62%),
+    radial-gradient(28% 64% at 26% 100%, var(--cloud-core) 0%, transparent 60%),
+    radial-gradient(36% 52% at 43% 100%, var(--cloud-core) 0%, transparent 62%),
+    radial-gradient(30% 66% at 60% 100%, var(--cloud-core) 0%, transparent 60%),
+    radial-gradient(34% 54% at 76% 100%, var(--cloud-core) 0%, transparent 62%),
+    radial-gradient(38% 48% at 92% 100%, var(--cloud-core) 0%, transparent 64%);
+  filter: blur(6px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nn-amb {
+    animation: none;
+  }
+}
+
+/* Blurred code-syntax mist scattered behind the page — light theme only. */
+.nn-codemist {
+  display: none;
+  filter: blur(3px);
+}
+:root[data-theme="light"] .nn-codemist {
+  display: block;
+}
+.nn-codemist span {
+  position: absolute;
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  color: rgba(40, 60, 95, 0.16);
+}
+
+/* ---- Stack tree diagram animations ----------------------------------- */
+@keyframes nn-stage-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes nn-draw {
+  from { stroke-dashoffset: 1; }
+  to   { stroke-dashoffset: 0; }
+}
+@keyframes nn-flow {
+  to { stroke-dashoffset: -34; }
+}
+@keyframes nn-float-pulse {
+  0%, 100% { opacity: 0.25; }
+  50%       { opacity: 0.55; }
+}
+/* Subtle vertical float for tree nodes — 3px so SVG connector gap is invisible */
+@keyframes nn-node-float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-3px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nn-stack-stage { animation: none; }
+  .nn-stack-draw  { animation: none; stroke-dasharray: none; stroke-dashoffset: 0; }
+  .nn-stack-flow  { animation: none; stroke-dasharray: none; }
+  .nn-node-float  { animation: none; transform: none; }
+}

@@ -1,0 +1,46 @@
+{
+  "nav": {
+    "about": "about",
+    "stack": "stack",
+    "work": "projekte",
+    "history": "verlauf",
+    "services": "services",
+    "contact": "kontakt"
+  },
+  "meta": {
+    "available": "offen für ausgewählte Freelance- und Festanstellungen"
+  },
+  "hero": {
+    "eyebrow": "senior fullstack software-entwickler",
+    "tagline": "Ich baue typisierte, skalierbare Web-Plattformen — End-to-End, von Symfony bis Next.js.",
+    "lead": "Ich konzipiere und entwickle robuste, typisierte, skalierbare Web-Plattformen – von Symfony- und PHP-Backends bis zu React- und Next.js-Frontends. Zehn Jahre Produkte mit Teams in ganz Europa und darüber hinaus."
+  },
+  "cta": {
+    "work": "projekte",
+    "cv": "lebenslauf"
+  },
+  "about": {
+    "statement": "Zehn Jahre, in denen ich komplexe Anforderungen in Produkte verwandle, die live gehen – und laufen bleiben.",
+    "body": "Seit zehn Jahren arbeite ich über den gesamten Stack, mit tiefen Wurzeln in PHP und Symfony (7+ Jahre) und vier Jahren Frontend-Entwicklung mit React, TypeScript und Next.js. Ich habe mit internationalen Teams zusammengearbeitet – Unlocked (NL), Kleap (CH), Ubiweb (CA) – als Entwickler, Tech Lead und Gründungsmitglied. Saubere Architektur, typisierte Verträge zwischen Front und Back und nachhaltige Produkte sind mir wichtig."
+  },
+  "contact": {
+    "title": "Lassen Sie uns etwas Beständiges bauen.",
+    "lead": "Ein Projekt, eine Stelle oder eine Idee? Ich bin derzeit offen für ausgewählte Gelegenheiten."
+  },
+  "services": {
+    "fullstack": "Fullstack-Webentwicklung",
+    "backend": "Backend-Architektur & APIs",
+    "frontend": "Frontend-Entwicklung",
+    "devops": "DevOps & Deployment",
+    "ai": "KI-Integration"
+  },
+  "search": {
+    "placeholder": "Stack durchsuchen — Symfony, React, Docker…",
+    "noResults": "Keine Erfahrung entspricht",
+    "navigate": "navigieren",
+    "select": "auswählen",
+    "close": "schließen",
+    "result": "Ergebnis",
+    "results": "Ergebnisse"
+  }
+}
