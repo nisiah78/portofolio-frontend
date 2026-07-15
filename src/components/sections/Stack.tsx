@@ -295,12 +295,10 @@ export function Stack() {
                     fontFamily: "var(--font-mono)", fontSize: 12,
                     padding: "7px 13px", borderRadius: 7,
                     transition: "all .22s",
-                    background: active
-                      ? "linear-gradient(180deg,#1a2233,#141a28)"
-                      : "transparent",
+                    background: active ? "var(--accent-soft)" : "transparent",
                     color: active ? "var(--fg)" : "var(--muted)",
                     boxShadow: active
-                      ? "0 0 0 1px #ffffff18, 0 4px 12px -6px #000"
+                      ? "0 0 0 1px var(--accent), 0 4px 12px -6px rgba(0,0,0,0.35)"
                       : "none",
                   }}
                 >
@@ -673,7 +671,7 @@ function RootNode({
       style={{
         display: "flex", flexDirection: "column", gap: 6,
         padding: "18px 22px", borderRadius: 16, whiteSpace: "nowrap",
-        background: "linear-gradient(150deg,#0f1524,#0a0e18)",
+        background: "linear-gradient(150deg, var(--surface), var(--bg))",
         border: "1px solid #22d3ee44",
         boxShadow: bright
           ? "0 0 0 1px #22d3ee22, 0 0 40px -8px #22d3ee66"
@@ -728,7 +726,7 @@ function CategoryNode({
         display: "flex", alignItems: "center", gap: 12,
         padding: "13px 17px", borderRadius: 14, cursor: "pointer",
         whiteSpace: "nowrap",
-        background: "linear-gradient(150deg,#10131c,#0b0e16)",
+        background: "linear-gradient(150deg, var(--surface), var(--bg))",
         border: "1px solid var(--line)",
         opacity: bright ? 1 : 0.22,
         boxShadow: glow,

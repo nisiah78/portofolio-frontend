@@ -152,7 +152,7 @@ export const projects: Record<Locale, Project[]> = {
       slug: "kleap",
       name: "Kleap",
       period: "juil. 2020 — juin 2025",
-      role: "Lead Technique · équipe fondatrice",
+      role: "Lead Technique · équipe fondateur",
       description:
         "Website builder piloté par l'IA. Direction de la migration d'un WordPress headless vers Next.js et Symfony, conception d'un modèle de données flexible pour le rendu des pages, micro-service de traduction multilingue et OPS sur Gridpane, DigitalOcean et Vercel.",
       tags: ["nextjs", "react", "symfony", "openai", "tailwind"],

@@ -27,7 +27,9 @@ export function Contact({ dict }: { dict: Dictionary }) {
 
               <div className="mt-7 flex flex-wrap justify-center gap-3.5 font-mono text-[13px] lg:justify-start">
                 <a
-                  href={profile.phoneHref}
+                  href={profile.whatsappHref}
+                  target="_blank"
+                  rel="noopener"
                   className="rounded-full border border-line px-4 py-2 text-fg transition-colors hover:border-accent hover:text-accent"
                 >
                   {profile.phone}
