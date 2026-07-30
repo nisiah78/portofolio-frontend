@@ -6,7 +6,6 @@ export const profile = {
   email: "nix.nomena@gmail.com",
   phone: "+261 34 80 203 62",
   whatsappHref: "https://wa.me/261348020362",
-  cvPath: "/Nomena-Nisiah-CV.pdf",
   socials: {
     github: "https://github.com/",
     linkedin: "https://www.linkedin.com/in/nambinintsoa-nomena-nisiah",

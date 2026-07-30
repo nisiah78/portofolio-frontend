@@ -22,7 +22,7 @@ export default async function Home({
 
   return (
     <main>
-      <Hero dict={dict} />
+      <Hero dict={dict} locale={locale as Locale} />
       <Snapshot dict={dict} />
       <About dict={dict} />
       <Stack />

@@ -4,10 +4,12 @@ import { Container } from "@/components/ui/Container";
 import { Icon } from "@/components/ui/Icon";
 import { Reveal } from "@/components/ui/Reveal";
 import { SocialLinks } from "@/components/ui/SocialLinks";
+import { getCvDownloadName, getCvHref } from "@/data/cv";
 import { profile } from "@/data/profile";
 import type { Dictionary } from "@/i18n/dictionaries";
+import type { Locale } from "@/i18n/config";
 
-export function Hero({ dict }: { dict: Dictionary }) {
+export function Hero({ dict, locale }: { dict: Dictionary; locale: Locale }) {
   return (
     <section
       id="top"
@@ -105,8 +107,8 @@ export function Hero({ dict }: { dict: Dictionary }) {
                 {dict.cta.work}
               </Link>
               <a
-                href={profile.cvPath}
-                download
+                href={getCvHref(locale)}
+                download={getCvDownloadName(locale)}
                 className="flex items-center gap-2 rounded-lg border border-line px-4 py-2.5 font-mono text-sm font-medium text-fg transition-colors hover:border-accent hover:text-accent"
               >
                 <Icon name="download" size={16} />
