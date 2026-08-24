@@ -1,14 +1,17 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Container } from "@/components/ui/Container";
 import { Icon } from "@/components/ui/Icon";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { stack, type StackCategory } from "@/data/stack";
+import { getStack, stack, type StackCategory } from "@/data/stack";
+import type { Locale } from "@/i18n/config";
+import type { Dictionary } from "@/i18n/dictionaries";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
-type View = "Catégories" | "Sous-groupes" | "Tout";
+/** View keys are locale-independent; their labels come from the dictionary. */
+type View = "categories" | "subgroups" | "all";
 
 type Connector = {
   id: string;
@@ -71,8 +74,8 @@ function hoverSet(id: string): Set<string> {
 function initExpanded(view: View): Record<string, boolean> {
   const exp: Record<string, boolean> = {};
   stack.forEach((cat) => {
-    exp[cat.id] = view !== "Catégories";
-    cat.subgroups.forEach((s) => { exp[s.id] = view === "Tout"; });
+    exp[cat.id] = view !== "categories";
+    cat.subgroups.forEach((s) => { exp[s.id] = view === "all"; });
   });
   return exp;
 }
@@ -97,8 +100,10 @@ function floatDuration(id: string): string {
 
 // ─── Component ───────────────────────────────────────────────────────────────
 
-export function Stack() {
-  const defaultView: View = "Sous-groupes";
+export function Stack({ dict, locale }: { dict: Dictionary; locale: Locale }) {
+  const categories = useMemo(() => getStack(locale), [locale]);
+  const t = dict.stack;
+  const defaultView: View = "subgroups";
 
   const [view, setViewState] = useState<View>(defaultView);
   const [expanded, setExpanded] = useState<Record<string, boolean>>(() =>
@@ -264,7 +269,7 @@ export function Stack() {
       )
     : [];
 
-  const VIEWS: View[] = ["Catégories", "Sous-groupes", "Tout"];
+  const VIEWS: View[] = ["categories", "subgroups", "all"];
 
   // ─── Render ───────────────────────────────────────────────────────────────
 
@@ -302,7 +307,7 @@ export function Stack() {
                       : "none",
                   }}
                 >
-                  {v}
+                  {t.views[v]}
                 </button>
               );
             })}
@@ -316,9 +321,9 @@ export function Stack() {
                 color: "var(--faint)", letterSpacing: ".1em",
               }}
             >
-              FILTRE //
+              {t.filter}
             </span>
-            {stack.map((cat) => {
+            {categories.map((cat) => {
               const active = filter === cat.id;
               return (
                 <button
@@ -440,13 +445,15 @@ export function Stack() {
               {/* Root node */}
               <FloatAnchor nodeId="root">
                 <RootNode
+                  label={t.rootLabel}
                   totalCount={totalTechs}
+                  layersLabel={t.layers}
                   bright={!hset || hset.has("root")}
                   onMouseEnter={(e) =>
                     enter(
                       "root",
-                      "Full-Stack Architecture",
-                      `${totalTechs} technologies réparties sur 5 couches, du frontend au cloud.`,
+                      t.rootTitle,
+                      t.rootDesc.replace("{count}", String(totalTechs)),
                       "#22d3ee",
                       e,
                     )
@@ -457,7 +464,7 @@ export function Stack() {
 
               {/* Categories column */}
               <div style={{ display: "flex", flexDirection: "column", gap: 22 }}>
-                {stack.map((cat) => {
+                {categories.map((cat) => {
                   const cb = bright(cat.id, cat.id);
                   const cCount = cat.subgroups.reduce((n, s) => n + s.techs.length, 0);
                   return (
@@ -475,6 +482,7 @@ export function Stack() {
                         <CategoryNode
                           cat={cat}
                           count={cCount}
+                          itemsLabel={t.items}
                           bright={cb}
                           expanded={!!expanded[cat.id]}
                           glow={glow(cat.color, cb)}
@@ -615,7 +623,7 @@ export function Stack() {
               background: "#34d399", flexShrink: 0,
             }}
           />
-          Survolez un nœud pour tracer son chemin · cliquez une branche pour la déployer
+          {t.hint}
         </div>
       </Container>
     </section>
@@ -654,12 +662,16 @@ function FloatAnchor({
 // ─── Sub-components ───────────────────────────────────────────────────────────
 
 function RootNode({
+  label,
   totalCount,
+  layersLabel,
   bright,
   onMouseEnter,
   onMouseLeave,
 }: {
+  label: string;
   totalCount: number;
+  layersLabel: string;
   bright: boolean;
   onMouseEnter: (e: React.MouseEvent) => void;
   onMouseLeave: () => void;
@@ -689,10 +701,10 @@ function RootNode({
         ROOT
       </div>
       <div style={{ fontSize: 19, fontWeight: 700, letterSpacing: "-.01em", color: "var(--fg)" }}>
-        Full-Stack
+        {label}
       </div>
       <div style={{ fontSize: 13, color: "var(--muted)" }}>
-        {totalCount} technologies · 5 couches
+        {totalCount} technologies · 5 {layersLabel}
       </div>
     </div>
   );
@@ -701,6 +713,7 @@ function RootNode({
 function CategoryNode({
   cat,
   count,
+  itemsLabel,
   bright,
   expanded,
   glow,
@@ -710,6 +723,7 @@ function CategoryNode({
 }: {
   cat: StackCategory;
   count: number;
+  itemsLabel: string;
   bright: boolean;
   expanded: boolean;
   glow: string;
@@ -750,7 +764,7 @@ function CategoryNode({
           {cat.label}
         </span>
         <span style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: "var(--muted)" }}>
-          {count} items
+          {count} {itemsLabel}
         </span>
       </span>
       <span

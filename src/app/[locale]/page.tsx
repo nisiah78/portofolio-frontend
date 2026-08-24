@@ -24,8 +24,8 @@ export default async function Home({
     <main>
       <Hero dict={dict} locale={locale as Locale} />
       <Snapshot dict={dict} />
-      <About dict={dict} />
-      <Stack />
+      <About dict={dict} locale={locale as Locale} />
+      <Stack dict={dict} locale={locale as Locale} />
       <Work locale={locale as Locale} />
       <History locale={locale as Locale} />
       <Services dict={dict} locale={locale as Locale} />

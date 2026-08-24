@@ -1,3 +1,5 @@
+import type { Locale } from "@/i18n/config";
+
 export const profile = {
   name: "Nomena Nisiah",
   handle: "nomena-nisiah",
@@ -11,9 +13,20 @@ export const profile = {
     linkedin: "https://www.linkedin.com/in/nambinintsoa-nomena-nisiah",
     linkedinLabel: "linkedin/nambinintsoa-nomena-nisiah",
   },
-  languages: "Malagasy · Français · English (B2)",
-  education: "M.Sc. Computer Science — ISSMI",
 } as const;
+
+/** Localized profile facts rendered in the about section. */
+export const languagesByLocale: Record<Locale, string> = {
+  en: "Malagasy · French · English (B2)",
+  fr: "Malgache · Français · Anglais (B2)",
+  de: "Malagasy · Französisch · Englisch (B2)",
+};
+
+export const educationByLocale: Record<Locale, string> = {
+  en: "M.Sc. Computer Science — ISSMI",
+  fr: "Master en informatique — ISSMI",
+  de: "M.Sc. Informatik — ISSMI",
+};
 
 /** Lines rendered in the "developer.ts" code card of the snapshot section. */
 export type CodeEntry = { key: string; value: string; num?: boolean };

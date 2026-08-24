@@ -1,7 +1,8 @@
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { profile } from "@/data/profile";
+import { educationByLocale, languagesByLocale } from "@/data/profile";
+import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries";
 
 function Meta({ label, value }: { label: string; value: string }) {
@@ -13,7 +14,7 @@ function Meta({ label, value }: { label: string; value: string }) {
   );
 }
 
-export function About({ dict }: { dict: Dictionary }) {
+export function About({ dict, locale }: { dict: Dictionary; locale: Locale }) {
   return (
     <section id="about" className="scroll-mt-20 py-14 sm:py-20">
       <Container>
@@ -27,8 +28,8 @@ export function About({ dict }: { dict: Dictionary }) {
           <Reveal className="flex flex-col gap-6">
             <p className="leading-7 text-muted">{dict.about.body}</p>
             <div className="grid gap-4 sm:grid-cols-2">
-              <Meta label="languages" value={profile.languages} />
-              <Meta label="education" value={profile.education} />
+              <Meta label="languages" value={languagesByLocale[locale]} />
+              <Meta label="education" value={educationByLocale[locale]} />
             </div>
           </Reveal>
         </div>

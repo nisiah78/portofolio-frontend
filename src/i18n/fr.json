@@ -34,6 +34,20 @@
     "devops": "DevOps & déploiement",
     "ai": "Intégration de l'IA"
   },
+  "stack": {
+    "views": {
+      "categories": "Catégories",
+      "subgroups": "Sous-groupes",
+      "all": "Tout"
+    },
+    "filter": "FILTRE //",
+    "rootLabel": "Full-Stack",
+    "rootTitle": "Architecture full-stack",
+    "rootDesc": "{count} technologies réparties sur 5 couches, du frontend au cloud.",
+    "layers": "couches",
+    "items": "éléments",
+    "hint": "Survolez un nœud pour tracer son chemin · cliquez une branche pour la déployer"
+  },
   "search": {
     "placeholder": "Rechercher une techno — Symfony, React, Docker…",
     "noResults": "Aucune expérience ne correspond à",

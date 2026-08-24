@@ -34,6 +34,20 @@
     "devops": "DevOps & Deployment",
     "ai": "AI Integration"
   },
+  "stack": {
+    "views": {
+      "categories": "Categories",
+      "subgroups": "Subgroups",
+      "all": "All"
+    },
+    "filter": "FILTER //",
+    "rootLabel": "Full-Stack",
+    "rootTitle": "Full-Stack Architecture",
+    "rootDesc": "{count} technologies across 5 layers, from frontend to cloud.",
+    "layers": "layers",
+    "items": "items",
+    "hint": "Hover a node to trace its path · click a branch to expand it"
+  },
   "search": {
     "placeholder": "Search stack — Symfony, React, Docker…",
     "noResults": "No experience matches",

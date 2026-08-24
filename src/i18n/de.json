@@ -34,6 +34,20 @@
     "devops": "DevOps & Deployment",
     "ai": "KI-Integration"
   },
+  "stack": {
+    "views": {
+      "categories": "Kategorien",
+      "subgroups": "Untergruppen",
+      "all": "Alle"
+    },
+    "filter": "FILTER //",
+    "rootLabel": "Full-Stack",
+    "rootTitle": "Full-Stack-Architektur",
+    "rootDesc": "{count} Technologien auf 5 Ebenen, vom Frontend bis zur Cloud.",
+    "layers": "Ebenen",
+    "items": "Einträge",
+    "hint": "Über einen Knoten fahren, um seinen Pfad zu verfolgen · auf einen Zweig klicken, um ihn zu öffnen"
+  },
   "search": {
     "placeholder": "Stack durchsuchen — Symfony, React, Docker…",
     "noResults": "Keine Erfahrung entspricht",
