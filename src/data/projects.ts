@@ -20,7 +20,7 @@ export const projects: Record<Locale, Project[]> = {
       period: "Dec 2025 — now",
       role: "Senior PHP Engineer",
       description:
-        "All-in-one platform for organizations and associations — CRM, accounting and website management. Led code-base migration and optimization, agentic IDE rules, new features, and async task monitoring.",
+        "All-in-one platform for organizations and associations — CRM, accounting and website management. Led code-base migration and optimization, AI-assisted workflows with Claude Code, new features, and async task monitoring.",
       tags: ["symfony", "mysql", "redis", "docker", "aws"],
       image:
         "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=640&q=80",
@@ -30,9 +30,9 @@ export const projects: Record<Locale, Project[]> = {
       slug: "ubiweb",
       name: "Ubiweb",
       period: "Dec 2023 — Dec 2025",
-      role: "Senior PHP Engineer",
+      role: "Senior PHP Engineer · freelance",
       description:
-        "Multi-tenant digital-marketing platform for SMEs. Micro-services and REST APIs, an AI service for automated review/email responses, Packagist SDKs, and real-time sync with Google, Meta, Yext and AWS.",
+        "Multi-tenant digital-marketing platform for SMEs. Micro-services and REST APIs, an AI service for automated review/email responses, 5 SDKs on Packagist, and real-time sync with Google, Meta, Yext and AWS. Cursor and Claude Code in the daily workflow.",
       tags: ["symfony", "mongodb", "temporal", "openai", "redis"],
       image:
         "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=640&q=80",
@@ -42,7 +42,7 @@ export const projects: Record<Locale, Project[]> = {
       slug: "unlocked",
       name: "Unlocked GG",
       period: "Jan 2022 — Mar 2023",
-      role: "Fullstack Engineer · ex-Meta BV",
+      role: "Fullstack Engineer · part-time",
       description:
         "E-sports hosting platform (LoL, R6, Clash Royale, FIFA). Built the tournament engine with regression & classification, the React front-end, marketplace with Stripe, and streaming donation pots.",
       tags: ["react", "typescript", "symfony", "stripe", "tailwind"],
@@ -54,9 +54,9 @@ export const projects: Record<Locale, Project[]> = {
       slug: "kleap",
       name: "Kleap",
       period: "Jul 2020 — Jun 2025",
-      role: "Technical Lead · founding team",
+      role: "Technical Lead · founding team, part-time",
       description:
-        "AI-driven website builder. Led migration from headless WordPress to Next.js + Symfony, flexible page-render data model, multilingual translation micro-service, and OPS across Gridpane, DigitalOcean and Vercel.",
+        "AI-driven website builder. Led migration from headless WordPress to Next.js + Symfony, flexible page-render data model, multilingual translation micro-service, led a team of 5, and OPS across Gridpane, DigitalOcean and Vercel. Cursor as a core development tool.",
       tags: ["nextjs", "react", "symfony", "openai", "tailwind"],
       image:
         "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=640&q=80",
@@ -78,9 +78,9 @@ export const projects: Record<Locale, Project[]> = {
       slug: "levea",
       name: "Levea",
       period: "Dec 2018 — Mar 2019",
-      role: "Symfony / React Developer · remote",
+      role: "Symfony / React Developer · freelance, evenings",
       description:
-        "Online restaurant platform. Maintained React storefronts, migrated Symfony 2.4 → 4, integrated Stripe payments and async order tracking with Urbantz.",
+        "Online restaurant platform — freelance work in the evenings, alongside the full-time Pulse role. Maintained React storefronts, migrated Symfony 2.4 → 4, integrated Stripe payments and async order tracking with Urbantz.",
       tags: ["react", "symfony", "stripe", "urbantz"],
       image:
         "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=640&q=80",
@@ -118,7 +118,7 @@ export const projects: Record<Locale, Project[]> = {
       period: "déc. 2025 — en cours",
       role: "Développeur PHP Senior",
       description:
-        "Plateforme tout-en-un pour organisations et associations — CRM, comptabilité et gestion de site web. Direction de la migration et de l'optimisation de la base de code, mise en place de règles IDE agentiques, nouvelles fonctionnalités et monitoring des tâches asynchrones.",
+        "Plateforme tout-en-un pour organisations et associations — CRM, comptabilité et gestion de site web. Direction de la migration et de l'optimisation de la base de code, workflows assistés par IA avec Claude Code, nouvelles fonctionnalités et monitoring des tâches asynchrones.",
       tags: ["symfony", "mysql", "redis", "docker", "aws"],
       image:
         "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=640&q=80",
@@ -128,9 +128,9 @@ export const projects: Record<Locale, Project[]> = {
       slug: "ubiweb",
       name: "Ubiweb",
       period: "déc. 2023 — déc. 2025",
-      role: "Développeur PHP Senior",
+      role: "Développeur PHP Senior · freelance",
       description:
-        "Plateforme de marketing digital multi-tenant pour PME. Micro-services et API REST, service IA pour réponses automatiques aux avis/emails, SDKs Packagist et synchronisation temps réel avec Google, Meta, Yext et AWS.",
+        "Plateforme de marketing digital multi-tenant pour PME. Micro-services et API REST, service IA pour réponses automatiques aux avis/emails, 5 SDKs sur Packagist et synchronisation temps réel avec Google, Meta, Yext et AWS. Cursor et Claude Code au quotidien.",
       tags: ["symfony", "mongodb", "temporal", "openai", "redis"],
       image:
         "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=640&q=80",
@@ -140,7 +140,7 @@ export const projects: Record<Locale, Project[]> = {
       slug: "unlocked",
       name: "Unlocked GG",
       period: "janv. 2022 — mars 2023",
-      role: "Développeur Fullstack · ex-Meta BV",
+      role: "Développeur Fullstack · temps partiel",
       description:
         "Plateforme d'hébergement e-sport (LoL, R6, Clash Royale, FIFA). Conception du moteur de tournois avec régression et classification, du front-end React, de la marketplace avec Stripe, et des cagnottes de streaming.",
       tags: ["react", "typescript", "symfony", "stripe", "tailwind"],
@@ -152,9 +152,9 @@ export const projects: Record<Locale, Project[]> = {
       slug: "kleap",
       name: "Kleap",
       period: "juil. 2020 — juin 2025",
-      role: "Lead Technique · équipe fondateur",
+      role: "Lead Technique · équipe fondateur, temps partiel",
       description:
-        "Website builder piloté par l'IA. Direction de la migration d'un WordPress headless vers Next.js et Symfony, conception d'un modèle de données flexible pour le rendu des pages, micro-service de traduction multilingue et OPS sur Gridpane, DigitalOcean et Vercel.",
+        "Website builder piloté par l'IA. Direction de la migration d'un WordPress headless vers Next.js et Symfony, conception d'un modèle de données flexible pour le rendu des pages, micro-service de traduction multilingue, direction d'une équipe de 5, et OPS sur Gridpane, DigitalOcean et Vercel. Cursor comme outil de développement principal.",
       tags: ["nextjs", "react", "symfony", "openai", "tailwind"],
       image:
         "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=640&q=80",
@@ -176,9 +176,9 @@ export const projects: Record<Locale, Project[]> = {
       slug: "levea",
       name: "Levea",
       period: "déc. 2018 — mars 2019",
-      role: "Développeur Symfony / React · télétravail",
+      role: "Développeur Symfony / React · freelance, soirées",
       description:
-        "Plateforme de restauration en ligne. Maintenance des vitrines React, migration de Symfony 2.4 vers 4, intégration des paiements Stripe et du suivi asynchrone des commandes avec Urbantz.",
+        "Plateforme de restauration en ligne — mission freelance en soirée, en parallèle du poste à temps plein chez Pulse. Maintenance des vitrines React, migration de Symfony 2.4 vers 4, intégration des paiements Stripe et du suivi asynchrone des commandes avec Urbantz.",
       tags: ["react", "symfony", "stripe", "urbantz"],
       image:
         "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=640&q=80",
@@ -216,7 +216,7 @@ export const projects: Record<Locale, Project[]> = {
       period: "Dez. 2025 — heute",
       role: "Senior PHP-Entwickler",
       description:
-        "All-in-one-Plattform für Organisationen und Vereine — CRM, Buchhaltung und Website-Management. Leitung der Codebasis-Migration und -Optimierung, agentische IDE-Regeln, neue Funktionen und Monitoring asynchroner Aufgaben.",
+        "All-in-one-Plattform für Organisationen und Vereine — CRM, Buchhaltung und Website-Management. Leitung der Codebasis-Migration und -Optimierung, KI-gestützte Workflows mit Claude Code, neue Funktionen und Monitoring asynchroner Aufgaben.",
       tags: ["symfony", "mysql", "redis", "docker", "aws"],
       image:
         "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=640&q=80",
@@ -226,9 +226,9 @@ export const projects: Record<Locale, Project[]> = {
       slug: "ubiweb",
       name: "Ubiweb",
       period: "Dez. 2023 — Dez. 2025",
-      role: "Senior PHP-Entwickler",
+      role: "Senior PHP-Entwickler · Freelance",
       description:
-        "Multi-Tenant-Plattform für digitales Marketing für KMUs. Microservices und REST-APIs, ein KI-Service für automatisierte Bewertungs-/E-Mail-Antworten, Packagist-SDKs und Echtzeit-Synchronisation mit Google, Meta, Yext und AWS.",
+        "Multi-Tenant-Plattform für digitales Marketing für KMUs. Microservices und REST-APIs, ein KI-Service für automatisierte Bewertungs-/E-Mail-Antworten, 5 SDKs auf Packagist und Echtzeit-Synchronisation mit Google, Meta, Yext und AWS. Cursor und Claude Code im täglichen Workflow.",
       tags: ["symfony", "mongodb", "temporal", "openai", "redis"],
       image:
         "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=640&q=80",
@@ -238,7 +238,7 @@ export const projects: Record<Locale, Project[]> = {
       slug: "unlocked",
       name: "Unlocked GG",
       period: "Jan. 2022 — März 2023",
-      role: "Fullstack-Entwickler · ex-Meta BV",
+      role: "Fullstack-Entwickler · Teilzeit",
       description:
         "E-Sport-Hosting-Plattform (LoL, R6, Clash Royale, FIFA). Entwicklung der Turnier-Engine mit Regression und Klassifikation, des React-Frontends, des Marketplace mit Stripe und der Streaming-Spendentöpfe.",
       tags: ["react", "typescript", "symfony", "stripe", "tailwind"],
@@ -250,9 +250,9 @@ export const projects: Record<Locale, Project[]> = {
       slug: "kleap",
       name: "Kleap",
       period: "Juli 2020 — Juni 2025",
-      role: "Technical Lead · Gründungsteam",
+      role: "Technical Lead · Gründungsteam, Teilzeit",
       description:
-        "KI-gestützter Website-Builder. Leitung der Migration von headless WordPress zu Next.js + Symfony, flexibles Datenmodell für das Seiten-Rendering, mehrsprachiger Übersetzungs-Microservice und OPS über Gridpane, DigitalOcean und Vercel.",
+        "KI-gestützter Website-Builder. Leitung der Migration von headless WordPress zu Next.js + Symfony, flexibles Datenmodell für das Seiten-Rendering, mehrsprachiger Übersetzungs-Microservice, Leitung eines 5-köpfigen Teams, und OPS über Gridpane, DigitalOcean und Vercel. Cursor als zentrales Entwicklungstool.",
       tags: ["nextjs", "react", "symfony", "openai", "tailwind"],
       image:
         "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=640&q=80",
@@ -274,9 +274,9 @@ export const projects: Record<Locale, Project[]> = {
       slug: "levea",
       name: "Levea",
       period: "Dez. 2018 — März 2019",
-      role: "Symfony-/React-Entwickler · Remote",
+      role: "Symfony-/React-Entwickler · Freelance, abends",
       description:
-        "Online-Restaurant-Plattform. Wartung der React-Storefronts, Migration von Symfony 2.4 auf 4, Integration von Stripe-Zahlungen und asynchronem Bestell-Tracking mit Urbantz.",
+        "Online-Restaurant-Plattform — abendliche Freelance-Tätigkeit parallel zur Vollzeitstelle bei Pulse. Wartung der React-Storefronts, Migration von Symfony 2.4 auf 4, Integration von Stripe-Zahlungen und asynchronem Bestell-Tracking mit Urbantz.",
       tags: ["react", "symfony", "stripe", "urbantz"],
       image:
         "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=640&q=80",

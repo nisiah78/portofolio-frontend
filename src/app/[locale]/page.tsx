@@ -6,6 +6,7 @@ import { Snapshot } from "@/components/sections/Snapshot";
 import { About } from "@/components/sections/About";
 import { Stack } from "@/components/sections/Stack";
 import { Work } from "@/components/sections/Work";
+import { MyProjects } from "@/components/sections/MyProjects";
 import { History } from "@/components/sections/History";
 import { Services } from "@/components/sections/Services";
 import { Contact } from "@/components/sections/Contact";
@@ -27,6 +28,7 @@ export default async function Home({
       <About dict={dict} locale={locale as Locale} />
       <Stack dict={dict} locale={locale as Locale} />
       <Work locale={locale as Locale} />
+      <MyProjects locale={locale as Locale} />
       <History locale={locale as Locale} />
       <Services dict={dict} locale={locale as Locale} />
       <Contact dict={dict} />

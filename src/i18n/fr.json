@@ -11,17 +11,17 @@
     "available": "disponible pour des missions freelance et des postes"
   },
   "hero": {
-    "eyebrow": "ingénieur logiciel fullstack senior",
+    "eyebrow": "ingénieur php/symfony senior",
     "tagline": "Je conçois des plateformes web typées et évolutives — de bout en bout, de Symfony à Next.js.",
-    "lead": "Je conçois et développe des plateformes web robustes, typées et évolutives — des back-ends Symfony et PHP aux front-ends React et Next.js. Dix ans à livrer des produits avec des équipes à travers l'Europe et au-delà."
+    "lead": "Je conçois et développe des plateformes web robustes, typées et évolutives — des back-ends Symfony et PHP aux front-ends React et Next.js. 9 ans à livrer des produits avec des équipes à travers l'Europe et au-delà."
   },
   "cta": {
     "work": "projets",
     "cv": "cv"
   },
   "about": {
-    "statement": "Dix ans à transformer des exigences complexes en produits qui sortent — et qui tiennent dans le temps.",
-    "body": "Depuis dix ans, je travaille sur toute la stack, avec de solides racines en PHP et Symfony (7+ ans) et quatre ans de développement front-end en React, TypeScript et Next.js. J'ai collaboré avec des équipes internationales — Unlocked (NL), Kleap (CH), Ubiweb (CA) — comme ingénieur, tech lead et membre fondateur. J'attache de l'importance à une architecture propre, à des contrats typés entre le front et le back, et à des produits durables."
+    "statement": "9 ans à transformer des exigences complexes en produits qui sortent — et qui tiennent dans le temps.",
+    "body": "Depuis 9 ans, je travaille sur toute la stack, avec de solides racines en PHP et Symfony (7+ ans) et quatre ans de développement front-end en React, TypeScript et Next.js. Je dirige actuellement l'ingénierie PHP/Symfony chez Novity, et j'ai collaboré avec des équipes internationales — Unlocked (NL), Kleap (CH), Ubiweb (CA) — comme ingénieur, tech lead et membre fondateur. Claude Code et Cursor font partie de mon workflow quotidien, et j'attache de l'importance à une architecture propre, à des contrats typés entre le front et le back, et à des produits durables."
   },
   "contact": {
     "title": "Construisons quelque chose qui dure.",

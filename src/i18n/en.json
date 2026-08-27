@@ -11,17 +11,17 @@
     "available": "available for select freelance & permanent roles"
   },
   "hero": {
-    "eyebrow": "senior fullstack engineer",
+    "eyebrow": "senior php/symfony developer",
     "tagline": "I build typed, scalable web platforms — end to end, from Symfony to Next.js.",
-    "lead": "I design and build robust, typed, scalable web platforms — from Symfony and PHP back-ends to React and Next.js front-ends. Ten years shipping products with teams across Europe and beyond."
+    "lead": "I design and build robust, typed, scalable web platforms — from Symfony and PHP back-ends to React and Next.js front-ends. 9 years shipping products with teams across Europe and beyond."
   },
   "cta": {
-    "work": "view_projects",
-    "cv": "download_cv"
+    "work": "View projects",
+    "cv": "Download resume"
   },
   "about": {
-    "statement": "Ten years turning complex requirements into products that ship — and keep running.",
-    "body": "For a decade I've worked across the full stack, with deep roots in PHP and Symfony (7+ years) and four years building front-ends in React, TypeScript and Next.js. I've partnered with international teams — Unlocked (NL), Kleap (CH), Ubiweb (CA) — as engineer, tech lead and founding team member, and I care about clean architecture, typed contracts between front and back, and shipping things that last."
+    "statement": "9 years turning complex requirements into products that ship — and keep running.",
+    "body": "For 9 years I've worked across the full stack, with deep roots in PHP and Symfony (7+ years) and four years building front-ends in React, TypeScript and Next.js. I currently lead PHP/Symfony engineering at Novity, and have partnered with international teams — Unlocked (NL), Kleap (CH), Ubiweb (CA) — as engineer, tech lead and founding team member. Claude Code and Cursor are part of my daily workflow, and I care about clean architecture, typed contracts between front and back, and shipping things that last."
   },
   "contact": {
     "title": "Let's build something that lasts.",

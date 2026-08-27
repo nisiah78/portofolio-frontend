@@ -36,9 +36,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   return {
-    title: "Nomena Nisiah — Senior Fullstack Software Engineer",
+    title: "Nomena Nisiah — Senior PHP / Symfony Developer",
     description:
-      "Nomena Nisiah — Senior Fullstack Software Engineer. 10 years across PHP/Symfony backends and React/Next.js frontends. Available for select roles.",
+      "Nomena Nisiah — Senior PHP / Symfony Developer. 9 years across PHP/Symfony backends and React/Next.js frontends. Available for select roles.",
     alternates: {
       canonical: `/${locale}`,
       languages: Object.fromEntries(locales.map((l) => [l, `/${l}`])),

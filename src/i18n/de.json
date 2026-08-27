@@ -11,17 +11,17 @@
     "available": "offen für ausgewählte Freelance- und Festanstellungen"
   },
   "hero": {
-    "eyebrow": "senior fullstack software-entwickler",
+    "eyebrow": "senior php/symfony-entwickler",
     "tagline": "Ich baue typisierte, skalierbare Web-Plattformen — End-to-End, von Symfony bis Next.js.",
-    "lead": "Ich konzipiere und entwickle robuste, typisierte, skalierbare Web-Plattformen – von Symfony- und PHP-Backends bis zu React- und Next.js-Frontends. Zehn Jahre Produkte mit Teams in ganz Europa und darüber hinaus."
+    "lead": "Ich konzipiere und entwickle robuste, typisierte, skalierbare Web-Plattformen – von Symfony- und PHP-Backends bis zu React- und Next.js-Frontends. 9 Jahre Produkte mit Teams in ganz Europa und darüber hinaus."
   },
   "cta": {
     "work": "projekte",
     "cv": "lebenslauf"
   },
   "about": {
-    "statement": "Zehn Jahre, in denen ich komplexe Anforderungen in Produkte verwandle, die live gehen – und laufen bleiben.",
-    "body": "Seit zehn Jahren arbeite ich über den gesamten Stack, mit tiefen Wurzeln in PHP und Symfony (7+ Jahre) und vier Jahren Frontend-Entwicklung mit React, TypeScript und Next.js. Ich habe mit internationalen Teams zusammengearbeitet – Unlocked (NL), Kleap (CH), Ubiweb (CA) – als Entwickler, Tech Lead und Gründungsmitglied. Saubere Architektur, typisierte Verträge zwischen Front und Back und nachhaltige Produkte sind mir wichtig."
+    "statement": "9 Jahre, in denen ich komplexe Anforderungen in Produkte verwandle, die live gehen – und laufen bleiben.",
+    "body": "Seit 9 Jahren arbeite ich über den gesamten Stack, mit tiefen Wurzeln in PHP und Symfony (7+ Jahre) und vier Jahren Frontend-Entwicklung mit React, TypeScript und Next.js. Aktuell leite ich das PHP/Symfony-Engineering bei Novity und habe mit internationalen Teams zusammengearbeitet – Unlocked (NL), Kleap (CH), Ubiweb (CA) – als Entwickler, Tech Lead und Gründungsmitglied. Claude Code und Cursor gehören zu meinem täglichen Workflow. Saubere Architektur, typisierte Verträge zwischen Front und Back und nachhaltige Produkte sind mir wichtig."
   },
   "contact": {
     "title": "Lassen Sie uns etwas Beständiges bauen.",

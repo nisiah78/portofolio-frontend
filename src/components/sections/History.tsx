@@ -8,7 +8,7 @@ export function History({ locale }: { locale: Locale }) {
     <section id="history" className="scroll-mt-20 py-14 sm:py-20">
       <Container>
         <div className="mx-auto max-w-3xl">
-          <SectionLabel index="04" file="history.log" />
+          <SectionLabel index="05" file="history.log" />
           <HistoryTimeline locale={locale} />
         </div>
       </Container>

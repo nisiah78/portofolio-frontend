@@ -9,7 +9,7 @@ export function Contact({ dict }: { dict: Dictionary }) {
   return (
     <section id="contact" className="scroll-mt-20 border-t border-line py-16 sm:py-24">
       <Container>
-        <SectionLabel index="06" file="contact" />
+        <SectionLabel index="07" file="contact" />
         <Reveal>
           <div className="flex flex-col gap-10 text-center lg:flex-row lg:items-start lg:gap-12 lg:text-left">
             {/* Left — 2/3: copy + contact pills */}

@@ -9,7 +9,7 @@ export function Services({ dict, locale }: { dict: Dictionary; locale: Locale })
   return (
     <section id="services" className="scroll-mt-20 py-14 sm:py-20">
       <Container>
-        <SectionLabel index="05" file="services.ts" />
+        <SectionLabel index="06" file="services.ts" />
         <Reveal>
           <ServicesCarousel titles={dict.services} locale={locale} />
         </Reveal>
