@@ -5,37 +5,15 @@
  *
  *   npm run cv:generate-de
  */
-import { copyFileSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
-import puppeteer from "puppeteer";
+import { copyFileSync, mkdirSync } from "node:fs";
+import { join } from "node:path";
+import { CV_FILES, htmlToPdf, root, rewriteBundle } from "./cv-bundler.mjs";
 import { enToDe } from "./cv-de-translations.mjs";
 
-const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const enHtmlPath = join(root, "docs/CV Nomena EN.html");
-const deHtmlPath = join(root, "docs/CV Nomena DE.html");
-const dePdfDocs = join(root, "docs/CV Nomena DE.pdf");
-const dePdfPublic = join(root, "public/cv/nomena-de.pdf");
-
-/** Read bundler template JSON (greedy match up to the last `</script>` before `</body>`). */
-function extractBundlerTemplate(html) {
-  const match = html.match(/<script type="__bundler\/template">([\s\S]*)<\/script>\s*<\/body>/);
-  if (!match) throw new Error("Missing __bundler/template in CV HTML");
-  return JSON.parse(match[1]);
-}
-
-/** Serialize like the source export: avoid literal `</script>` in the host HTML. */
-function serializeBundlerTemplate(template) {
-  return JSON.stringify(template).replace(/<\/script>/gi, "<\\u002Fscript>");
-}
-
-function replaceBundlerTemplate(html, template) {
-  const serialized = serializeBundlerTemplate(template);
-  return html.replace(
-    /<script type="__bundler\/template">[\s\S]*<\/script>(\s*<\/body>)/,
-    `<script type="__bundler/template">${serialized}</script>$1`,
-  );
-}
+const enHtmlPath = join(root, CV_FILES.en.html);
+const deHtmlPath = join(root, CV_FILES.de.html);
+const dePdfDocs = join(root, CV_FILES.de.pdf);
+const dePdfPublic = join(root, CV_FILES.de.public);
 
 function translateTemplate(template) {
   const pairs = Object.entries(enToDe).sort((a, b) => b[0].length - a[0].length);
@@ -53,10 +31,13 @@ function translateTemplate(template) {
 }
 
 function buildDeHtml() {
-  const html = readFileSync(enHtmlPath, "utf8");
-  const template = extractBundlerTemplate(html);
-  const { template: translated, replaced } = translateTemplate(template);
-  console.log(`Applied ${replaced}/${Object.keys(enToDe).length} translation pairs`);
+  let translated;
+  rewriteBundle(enHtmlPath, deHtmlPath, (template) => {
+    const result = translateTemplate(template);
+    console.log(`Applied ${result.replaced}/${Object.keys(enToDe).length} translation pairs`);
+    translated = result.template;
+    return translated;
+  });
 
   const untranslated = [];
   const re = />([^<]{4,200})</g;
@@ -114,53 +95,13 @@ function buildDeHtml() {
     for (const s of unique) console.warn("  -", s);
   }
 
-  const deHtml = replaceBundlerTemplate(html, translated);
-  writeFileSync(deHtmlPath, deHtml);
-
-  // Guard: corrupted embed would break the bundler at runtime.
-  const roundTrip = extractBundlerTemplate(deHtml);
-  if (roundTrip.length !== translated.length) {
-    throw new Error(
-      `DE HTML template length mismatch after embed (${roundTrip.length} vs ${translated.length})`,
-    );
-  }
   console.log("Wrote", deHtmlPath);
   return deHtmlPath;
 }
 
-async function htmlToPdf(htmlPath, pdfPath) {
-  const executablePath = puppeteer.executablePath();
-  const browser = await puppeteer.launch({
-    headless: true,
-    executablePath,
-    args: ["--no-sandbox", "--disable-setuid-sandbox"],
-  });
-  try {
-    const page = await browser.newPage();
-    await page.goto(`file://${htmlPath}`, { waitUntil: "networkidle0", timeout: 120_000 });
-    await page.waitForFunction(
-      () => {
-        const el = document.getElementById("__bundler_loading");
-        return !el || el.textContent === "Done" || !el.offsetParent;
-      },
-      { timeout: 90_000 },
-    ).catch(() => {});
-    await new Promise((r) => setTimeout(r, 4000));
-    mkdirSync(dirname(pdfPath), { recursive: true });
-    await page.pdf({
-      path: pdfPath,
-      format: "A4",
-      printBackground: true,
-      preferCSSPageSize: true,
-    });
-    console.log("Wrote", pdfPath);
-  } finally {
-    await browser.close();
-  }
-}
-
 const htmlPath = buildDeHtml();
 await htmlToPdf(htmlPath, dePdfDocs);
+console.log("Wrote", dePdfDocs);
 mkdirSync(join(root, "public/cv"), { recursive: true });
 copyFileSync(dePdfDocs, dePdfPublic);
 console.log("Synced", dePdfPublic);

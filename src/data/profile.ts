@@ -35,7 +35,7 @@ export const codeCard: { file: string; entries: CodeEntry[] } = {
   file: "developer.ts",
   entries: [
     { key: "name", value: '"Nomena Nisiah"' },
-    { key: "role", value: '"Senior PHP / Symfony Developer"' },
+    { key: "role", value: '"Senior Fullstack Engineer"' },
     { key: "experience", value: "9", num: true },
     { key: "stack", value: '["Symfony", "Next.js", "TypeScript"]' },
     { key: "based", value: '"Antananarivo, Madagascar"' },

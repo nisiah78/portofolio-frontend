@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "cv:sync": "node scripts/sync-cv-pdfs.mjs",
+    "cv:render": "node scripts/render-cv.mjs",
     "cv:install-chrome": "puppeteer browsers install chrome",
     "cv:generate-de": "node scripts/ensure-puppeteer-chrome.mjs && node scripts/generate-cv-de.mjs"
   },
