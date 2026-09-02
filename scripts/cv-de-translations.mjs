@@ -23,8 +23,8 @@ export const enToDe = {
     "Online-Plattform zur Steuerung sämtlicher Prozesse von Organisationen und Vereinen (CRM, Buchhaltung, Website-Verwaltung).",
   "Modernized the platform's Symfony codebase, reducing technical debt and improving maintainability.":
     "Modernisierung der Symfony-Codebasis der Plattform, Reduzierung technischer Schulden und Verbesserung der Wartbarkeit.",
-  "Defined AI-assisted development workflows and coding guidelines using <strong>Claude Code</strong> to improve team productivity and consistency.":
-    "Definition KI-gestützter Entwicklungs-Workflows und Coding-Guidelines mit <strong>Claude Code</strong> zur Steigerung von Teamproduktivität und Konsistenz.",
+  "Built agentic workflows and contributed to orchestrating AI-assisted development pipelines — task breakdown, analysis and execution — using <strong>Claude Code</strong> and <strong>Cursor</strong>.":
+    "Aufbau von Agentic Workflows und Mitwirkung an der Orchestrierung KI-gestützter Entwicklungs-Pipelines — Aufgabenzerlegung, Analyse und Umsetzung — mit <strong>Claude Code</strong> und <strong>Cursor</strong>.",
   "Designed and shipped new product features end to end.":
     "Konzeption und Auslieferung neuer Produktfunktionen End-to-End.",
   "Maintained and monitored asynchronous task processing and several internal PHP SDKs.":
@@ -36,8 +36,8 @@ export const enToDe = {
     "Multi-Tenant-Plattform für digitales Marketing für KMUs und Investoren.",
   "Modernized the codebase and extracted core domains into REST microservices, improving deployment independence.":
     "Modernisierung der Codebasis und Extraktion der Kerndomänen in REST-Microservices zur Verbesserung der Deployment-Unabhängigkeit.",
-  "Designed and implemented an AI-powered microservice (OpenAI) to analyze customer feedback and auto-generate responses (reviews, email content).":
-    "Konzeption und Umsetzung eines KI-gestützten Microservice (OpenAI) zur Analyse von Kundenfeedback und automatischen Beantwortung (Bewertungen, E-Mail-Inhalte).",
+  "Designed a multi-agent AI workflow (OpenAI) to automatically analyze and respond to customer reviews, with a formal tone tailored to each review's quality.":
+    "Konzeption eines Multi-Agenten-KI-Workflows (OpenAI) zur automatisierten Analyse und Beantwortung von Kundenbewertungen mit einem an die jeweilige Bewertungsqualität angepassten, formellen Ton.",
   "Designed an asynchronous job platform for long-running/scheduled workloads (Temporal, RoadRunner) with execution-time forecasting.":
     "Konzeption einer Plattform für asynchrone Jobs für langlaufende/geplante Workloads (Temporal, RoadRunner) mit Prognose der Ausführungszeit.",
   "Designed and published 5 reusable PHP SDKs (built with Symfony) on Packagist to standardize communication with internal microservices.":
@@ -71,6 +71,10 @@ export const enToDe = {
     "Architektur von Microservices (Buchhaltung, Marketplace, Workspace, Layout, Admin) sowie eines internen mehrsprachigen Übersetzungsdienstes für Kunden-Websites.",
   "Built AI-powered features, agents and tooling (OpenAI, Replicate, Mastra, CopilotKit), using <strong>Cursor</strong> as a core development tool.":
     "Entwicklung KI-gestützter Funktionen, Agenten und Tools (OpenAI, Replicate, Mastra, CopilotKit), mit <strong>Cursor</strong> als zentralem Entwicklungstool.",
+  "Orchestrated multiple AI agents, tools and skills into agentic workflows to drive complex tasks end to end.":
+    "Orchestrierung mehrerer KI-Agenten, -Tools und -Skills zu agentischen Workflows für die durchgängige Steuerung komplexer Aufgaben.",
+  "Applied these workflows to generate client sites entirely through an AI chat interface, translate page content, and execute multiple in-app tools via chat-driven function calling.":
+    "Einsatz dieser Workflows zur vollständig per KI-Chat gesteuerten Erstellung von Kundenseiten, zur Übersetzung von Seiteninhalten und zur Ausführung mehrerer App-Tools per Function Calling aus dem Chat heraus.",
   "Led a team of 5 — task planning, code reviews, technical mentoring, reporting to the CEO.":
     "Leitung eines 5-köpfigen Teams — Aufgabenplanung, Code-Reviews, technisches Mentoring, Reporting an den CEO.",
   "Owned infrastructure/ops for the platform (GridPane, DigitalOcean, Plesk, Vercel).":
