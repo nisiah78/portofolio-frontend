@@ -1,8 +1,8 @@
 /** English → German replacements for the CV HTML template (longest keys first at runtime). */
 export const enToDe = {
   // Header / positioning
-  "Développeur fullstack Php / Symfony / Typescript senior / AI-Driven Developper":
-    "Développeur fullstack Php / Symfony / Typescript senior / AI-Driven Developper",
+  "Développeur fullstack Php / Symfony / Typescript / Java / AI-Driven Developper":
+    "Développeur fullstack Php / Symfony / Typescript / Java / AI-Driven Developper",
   "Antananarivo, Madagascar · Remote · UTC+3": "Antananarivo, Madagaskar · Remote · UTC+3",
 
   // Summary paragraph (exact string incl. inline <strong> tags, so the whole-sentence match fires)

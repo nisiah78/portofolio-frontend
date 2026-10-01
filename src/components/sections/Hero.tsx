@@ -67,9 +67,17 @@ export function Hero({ dict, locale }: { dict: Dictionary; locale: Locale }) {
               <Icon name="braces" size={14} className="text-accent" />
               TypeScript
             </span>
+            <span className="absolute -left-4 top-0 flex items-center gap-1.5 rounded-full border border-line bg-surface px-2.5 py-1.5 font-mono text-[11.5px] text-fg shadow-[0_12px_30px_-12px_rgba(0,0,0,0.5)] animate-[nn-float_5.8s_ease-in-out_0.7s_infinite]">
+              <Icon name="code-2" size={14} className="text-accent" />
+              Python
+            </span>
             <span className="absolute -left-5 bottom-1 flex items-center gap-1.5 rounded-full border border-line bg-surface px-2.5 py-1.5 font-mono text-[11.5px] text-fg shadow-[0_12px_30px_-12px_rgba(0,0,0,0.5)] animate-[nn-float_5.4s_ease-in-out_0.9s_infinite]">
               <Icon name="server" size={14} className="text-accent" />
-              Symfony
+              Php
+            </span>
+            <span className="absolute -right-5 bottom-1 flex items-center gap-1.5 rounded-full border border-line bg-surface px-2.5 py-1.5 font-mono text-[11.5px] text-fg shadow-[0_12px_30px_-12px_rgba(0,0,0,0.5)] animate-[nn-float_5s_ease-in-out_0.2s_infinite]">
+              <Icon name="sparkles" size={14} className="text-accent" />
+              Claude
             </span>
           </Reveal>
 
