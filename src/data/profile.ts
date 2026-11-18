@@ -28,6 +28,12 @@ export const educationByLocale: Record<Locale, string> = {
   de: "M.Sc. Informatik — ISSMI",
 };
 
+/** Completed certification shown in the about section, linked to its public badge. */
+export const certification = {
+  label: "Claude Certified Architect – Foundations · Anthropic",
+  href: "https://www.credly.com/badges/0e7c4108-70c4-40d1-9182-1355b9c3e41c/public_url",
+} as const;
+
 /** Lines rendered in the "developer.ts" code card of the snapshot section. */
 export type CodeEntry = { key: string; value: string; num?: boolean };
 

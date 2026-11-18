@@ -1,15 +1,33 @@
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { educationByLocale, languagesByLocale } from "@/data/profile";
+import { certification, educationByLocale, languagesByLocale } from "@/data/profile";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries";
 
-function Meta({ label, value }: { label: string; value: string }) {
+function Meta({
+  label,
+  value,
+  href,
+  className = "",
+}: {
+  label: string;
+  value: string;
+  href?: string;
+  className?: string;
+}) {
   return (
-    <div className="rounded-lg border border-line bg-surface p-4">
+    <div className={`rounded-lg border border-line bg-surface p-4 ${className}`}>
       <div className="font-mono text-xs text-faint">{label}</div>
-      <div className="mt-1 text-sm text-fg">{value}</div>
+      <div className="mt-1 text-sm text-fg">
+        {href ? (
+          <a href={href} target="_blank" rel="noopener noreferrer" className="underline-offset-4 hover:underline">
+            {value} ↗
+          </a>
+        ) : (
+          value
+        )}
+      </div>
     </div>
   );
 }
@@ -30,6 +48,12 @@ export function About({ dict, locale }: { dict: Dictionary; locale: Locale }) {
             <div className="grid gap-4 sm:grid-cols-2">
               <Meta label="languages" value={languagesByLocale[locale]} />
               <Meta label="education" value={educationByLocale[locale]} />
+              <Meta
+                label="certification"
+                value={certification.label}
+                href={certification.href}
+                className="sm:col-span-2"
+              />
             </div>
           </Reveal>
         </div>

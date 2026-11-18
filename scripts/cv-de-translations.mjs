@@ -136,7 +136,6 @@ export const enToDe = {
   "(credential online)": "(Zertifikat online)",
   "Claude Certified Architect – Foundations": "Claude Certified Architect – Foundations",
   "— Anthropic": "— Anthropic",
-  "· in progress": "· in Vorbereitung",
 
   // Languages
   "Languages": "Sprachen",
