@@ -38,6 +38,15 @@ export interface Tour {
   pointerFromWindow(ev: PointerEvent): void;
 }
 
+export interface RoomStats {
+  fps: number;
+  frameMs: number;
+  calls: number;
+  triangles: number;
+  dpr: number;
+  meshes: { before: number; after: number };
+}
+
 export interface Room {
   canvas: HTMLCanvasElement;
   renderer: THREE.WebGLRenderer;
@@ -73,4 +82,7 @@ export interface Room {
   resize(): void;
   setPaused(paused: boolean): void;
   destroy(): void;
+  /** Resolves once shaders are compiled and the render loop has started. */
+  ready: Promise<void>;
+  stats(): RoomStats;
 }

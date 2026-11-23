@@ -10,7 +10,14 @@ interface Screen {
   kind: ScreenKind;
   acc: number;
   seed: number;
+  /** Seconds between redraws (Infinity = drawn once). */
+  every: number;
+  /** Last drawn state for screens whose content changes in steps. */
+  key: number;
 }
+
+/* Each redraw re-uploads a 512×288 texture to the GPU: only redraw what moves, as often as it reads well. */
+const SCREEN_EVERY: Record<ScreenKind, number> = { code: 0.1, dash: 0.12, term: 0.2, black: 0.25, cam: Infinity };
 
 const CODE = [
   "final class ProjectController",
@@ -76,6 +83,12 @@ function oakTex() {
 
 function drawScreen(s: Screen, t: number) {
   const g = s.g, W = 512, H = 288;
+  if (s.kind === "term") {
+    // the terminal only changes when a new line appears
+    const n = Math.floor((t * 0.9) % 9);
+    if (n === s.key) return;
+    s.key = n;
+  }
   if (s.kind === "code") {
     g.fillStyle = "#10141c"; g.fillRect(0, 0, W, H);
     g.fillStyle = "#1b2230"; g.fillRect(0, 0, W, 22);
@@ -167,15 +180,25 @@ export function buildInterior(R: Room) {
     c.height = 288;
     const t = new THREE.CanvasTexture(c);
     t.colorSpace = THREE.SRGBColorSpace;
-    const s: Screen = { g: c.getContext("2d")!, t, kind, acc: 0, seed: Math.random() * 100 };
+    const s: Screen = { g: c.getContext("2d")!, t, kind, acc: 0, seed: Math.random() * 100, every: SCREEN_EVERY[kind], key: -1 };
     drawScreen(s, 0);
+    // stagger the clocks so screens never come due on the same frame
+    s.acc = (screens.length * 0.023) % s.every || 0;
     screens.push(s);
     return t;
   }
+  /* At most one screen redraw (= one texture upload) per frame, round-robin, so the cost is spread
+     evenly instead of spiking every ~120 ms. */
+  let rr = 0;
   R.frameHooks.push((dt, t) => {
-    for (const s of screens) {
-      s.acc += dt;
-      if (s.acc > 0.12) { s.acc = 0; drawScreen(s, t + s.seed); }
+    for (const s of screens) s.acc += dt;
+    for (let k = 0; k < screens.length; k++) {
+      const i = (rr + k) % screens.length, s = screens[i];
+      if (s.acc < s.every) continue;
+      s.acc = 0;
+      drawScreen(s, t + s.seed);
+      rr = (i + 1) % screens.length;
+      break;
     }
   });
   function pickable(o: THREE.Object3D, id: PickId) {
@@ -293,6 +316,7 @@ export function buildInterior(R: Room) {
     new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 1, transparent: true, opacity: 0.55, side: THREE.DoubleSide, depthWrite: false }),
   );
   sheer.position.set(-0.28, 1.2, 1.6);
+  sheer.userData.dynamic = true;
   scene.add(sheer);
   const sheerPos = sheer.geometry.attributes.position as THREE.BufferAttribute;
   const sp0 = (sheerPos.array as Float32Array).slice();
@@ -334,13 +358,11 @@ export function buildInterior(R: Room) {
     const lf = new THREE.Mesh(new THREE.SphereGeometry(0.04, 8, 6), M("#7fa68a", 0.9));
     lf.position.set(1.33 + (Math.random() - 0.5) * 0.12, 0.9 + Math.random() * 0.07, -1.55 + (Math.random() - 0.5) * 0.12);
     lf.scale.set(1, 0.7, 1);
-    lf.castShadow = true;
     scene.add(lf);
   }
   const hp = new THREE.Mesh(new THREE.TorusGeometry(0.085, 0.012, 8, 20, Math.PI * 1.15), M("#d9d4cc", 0.7));
   hp.position.set(0.55, 0.9, -1.38);
   hp.rotation.set(0.2, 0.3, 3.4);
-  hp.castShadow = true;
   scene.add(hp);
 
   /* shelf stand with network gear + small monitor (west wall) */
@@ -353,6 +375,7 @@ export function buildInterior(R: Room) {
     const led = new THREE.Mesh(new THREE.BoxGeometry(0.014, 0.008, 0.004), new THREE.MeshBasicMaterial({ color: l % 2 ? 0xffc23d : 0x3ddc84 }));
     led.position.set(sx + 0.09, 0.82 + (l % 2) * 0.014 - 0.007, sz - 0.1 + l * 0.04 - 0.02);
     led.rotation.y = Math.PI / 2;
+    led.userData.dynamic = true;
     scene.add(led);
     leds.push(led);
   }
@@ -371,7 +394,6 @@ export function buildInterior(R: Room) {
   curves.forEach((pts) => {
     const cv = new THREE.CatmullRomCurve3(pts.map((p) => new THREE.Vector3(p[0], p[1], p[2])));
     const tube = new THREE.Mesh(new THREE.TubeGeometry(cv, 30, 0.007, 5), cm);
-    tube.castShadow = true;
     scene.add(tube);
   });
   const rug = new THREE.Mesh(new THREE.BoxGeometry(0.75, 0.025, 0.52), new THREE.MeshStandardMaterial({ map: noiseTex("#d8cdb8", ["#c8bba3", "#e6dcc8"], 900, 64), roughness: 1 }));
@@ -397,7 +419,7 @@ export function buildInterior(R: Room) {
       const a = (i / 5) * Math.PI * 2;
       const leg = box(0.34, 0.035, 0.05, cb, Math.cos(a) * 0.17, 0.07, Math.sin(a) * 0.17, g);
       leg.rotation.y = -a;
-      cyl(0.025, 0.025, 0.03, cb, Math.cos(a) * 0.33, 0.03, Math.sin(a) * 0.33, g, 10);
+      cyl(0.025, 0.025, 0.03, cb, Math.cos(a) * 0.33, 0.03, Math.sin(a) * 0.33, g, 10).castShadow = false;
     }
     cyl(0.03, 0.03, 0.3, M("#777", 0.3, 0.8), 0, 0.25, 0, g, 10);
     box(0.5, 0.09, 0.5, cb, 0, 0.45, 0, g); box(0.5, 0.012, 0.08, red, 0, 0.5, 0.13, g, false);

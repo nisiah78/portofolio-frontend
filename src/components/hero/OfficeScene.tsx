@@ -25,6 +25,25 @@ function hasWebGL() {
   }
 }
 
+/** `?perf` in the URL: live fps / frame time / draw calls / resolution, to measure the scene. */
+function perfOverlay(room: Room) {
+  const el = document.createElement("div");
+  el.style.cssText =
+    "position:fixed;left:12px;bottom:12px;z-index:100;padding:8px 10px;border-radius:8px;font:12px/1.5 var(--font-mono),monospace;color:#9ef0b0;background:rgba(0,0,0,.78);pointer-events:none;white-space:pre";
+  document.body.appendChild(el);
+  const id = window.setInterval(() => {
+    const st = room.stats();
+    el.textContent =
+      `${st.fps} fps · ${st.frameMs} ms\n` +
+      `${st.calls} draw calls · ${(st.triangles / 1000).toFixed(0)}k tris\n` +
+      `dpr ${st.dpr} · meshes ${st.meshes.before} → ${st.meshes.after}`;
+  }, 500);
+  return () => {
+    window.clearInterval(id);
+    el.remove();
+  };
+}
+
 function currentHour() {
   const d = new Date();
   return d.getHours() + d.getMinutes() / 60;
@@ -68,7 +87,17 @@ export default function OfficeScene() {
     }
     roomRef.current = room;
     room.tour.bind(cv);
-    register(room);
+    let alive = true;
+    // fade the canvas in on a finished frame, then hand the scene to the UI (tour button, clock)
+    room.ready.then(() => {
+      if (!alive) return;
+      requestAnimationFrame(() => {
+        if (!alive) return;
+        cv.dataset.ready = "";
+        register(room);
+      });
+    });
+    const stopPerf = new URLSearchParams(window.location.search).has("perf") ? perfOverlay(room) : null;
 
     window.addEventListener("pointermove", (e) => room.tour.pointerFromWindow(e), { signal: room.signal });
 
@@ -83,6 +112,8 @@ export default function OfficeScene() {
     document.addEventListener("visibilitychange", sync, { signal: room.signal });
 
     return () => {
+      alive = false;
+      stopPerf?.();
       io.disconnect();
       register(null);
       room.destroy();

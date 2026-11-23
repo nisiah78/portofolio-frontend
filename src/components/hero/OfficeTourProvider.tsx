@@ -62,6 +62,8 @@ export function OfficeTourProvider({ t, children }: { t: OfficeDict; children: R
   const register = useCallback((room: Room | null) => {
     roomRef.current = room;
     setReady(!!room);
+    // the 3D scene covers the hero: its animated aurora fallback can stop entirely
+    document.documentElement.dataset.office = room ? "ready" : "off";
     if (!room) {
       setTour(false);
       return;

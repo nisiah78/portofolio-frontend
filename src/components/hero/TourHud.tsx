@@ -5,7 +5,7 @@ import { STATION_IDS } from "@/lib/room/types";
 import { useOfficeTour } from "./OfficeTourProvider";
 
 const hudBtn =
-  "nn-glass pointer-events-auto flex h-11 items-center gap-2 rounded-[10px] px-4 font-mono text-sm font-medium text-fg transition-colors hover:border-accent";
+  "nn-hud-glass pointer-events-auto flex h-11 items-center gap-2 rounded-[10px] px-4 font-mono text-sm font-medium text-fg transition-colors hover:border-accent";
 
 /** Overlay shown while touring the 3D office: exit, clock, stops, info card and hints. */
 export function TourHud() {
@@ -24,7 +24,7 @@ export function TourHud() {
 
       <div className="absolute right-5 top-5 flex items-center gap-2.5">
         {clock && (
-          <div aria-label={t.clockLabel} className="nn-glass pointer-events-auto flex h-11 items-center rounded-[10px] px-3 font-mono text-[12.5px] text-muted">
+          <div aria-label={t.clockLabel} className="nn-hud-glass pointer-events-auto flex h-11 items-center rounded-[10px] px-3 font-mono text-[12.5px] text-muted">
             {clock}
           </div>
         )}
@@ -36,7 +36,7 @@ export function TourHud() {
       {info && (
         <section
           aria-live="polite"
-          className="nn-glass pointer-events-auto absolute bottom-[92px] left-5 flex w-[min(360px,calc(100%-40px))] flex-col gap-2 rounded-[14px] p-[18px] pr-12"
+          className="nn-hud-glass pointer-events-auto absolute bottom-[92px] left-5 flex w-[min(360px,calc(100%-40px))] flex-col gap-2 rounded-[14px] p-[18px] pr-12"
         >
           <button
             type="button"
@@ -53,7 +53,7 @@ export function TourHud() {
         </section>
       )}
 
-      <div className="nn-glass pointer-events-auto absolute bottom-[92px] right-5 hidden w-[250px] rounded-[14px] px-4 py-3.5 font-mono text-[13px] leading-relaxed text-muted min-[980px]:block">
+      <div className="nn-hud-glass pointer-events-auto absolute bottom-[92px] right-5 hidden w-[250px] rounded-[14px] px-4 py-3.5 font-mono text-[13px] leading-relaxed text-muted min-[980px]:block">
         <b className="font-semibold text-accent">{t.hintDrag}</b> {t.hintDragTxt}
         <br />
         <b className="font-semibold text-accent">{t.hintWheel}</b> {t.hintWheelTxt}
@@ -63,7 +63,7 @@ export function TourHud() {
 
       <nav
         aria-label={t.stationsLabel}
-        className="nn-glass pointer-events-auto absolute bottom-[22px] left-1/2 flex w-max max-w-[calc(100%-32px)] -translate-x-1/2 flex-wrap justify-center gap-1.5 rounded-[14px] p-1.5"
+        className="nn-hud-glass pointer-events-auto absolute bottom-[22px] left-1/2 flex w-max max-w-[calc(100%-32px)] -translate-x-1/2 flex-wrap justify-center gap-1.5 rounded-[14px] p-1.5"
       >
         {STATION_IDS.map((id, i) => {
           const current = station === id;

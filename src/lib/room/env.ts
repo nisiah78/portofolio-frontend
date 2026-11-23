@@ -1,6 +1,7 @@
 /* Renderer, sky, exterior, lighting, time & weather — ported from docs/v2/room-env.js. */
 import * as THREE from "three";
 import { buildInterior } from "./interior";
+import { mergeStatic } from "./optimize";
 import { createTour } from "./tour";
 import type { Room, RoomState, Weather } from "./types";
 import { C, clamp, noiseTex, radialTex, smooth } from "./util";
@@ -25,9 +26,16 @@ export interface RoomOptions {
 export function createRoom(canvas: HTMLCanvasElement, opts: RoomOptions = {}): Room {
   const abort = new AbortController();
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false, powerPreference: "high-performance" });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.6));
+  /* Adaptive resolution: start at the best tier, step down while the GPU can't keep up. */
+  const dpr = window.devicePixelRatio || 1;
+  const qualityTiers = [...new Set([Math.min(dpr, 1.6), Math.min(dpr, 1.25), 1])];
+  let tier = 0;
+  renderer.setPixelRatio(qualityTiers[tier]);
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFShadowMap;
+  // Everything that casts a shadow is static: the shadow map is only re-rendered when the sun moves.
+  renderer.shadowMap.autoUpdate = false;
+  renderer.shadowMap.needsUpdate = true;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.0;
 
@@ -263,6 +271,7 @@ export function createRoom(canvas: HTMLCanvasElement, opts: RoomOptions = {}): R
     fog.near = 18 - cl * 8;
     fog.far = 95 - cl * 40;
     sun.position.copy(dir.clone().multiplyScalar(18));
+    renderer.shadowMap.needsUpdate = true;
     sun.target.position.set(0, 0.6, 0.5);
     sun.target.updateMatrixWorld();
     sun.color.copy(sunCol);
@@ -375,9 +384,53 @@ export function createRoom(canvas: HTMLCanvasElement, opts: RoomOptions = {}): R
   };
 
   let last = performance.now();
+  let frameEma = 16.7;
+  let started = false;
+
+  /* Frame pacing watchdog: average rAF interval over ~1.5 s windows. Sustained slow windows
+     drop a resolution tier; a long run of healthy ones (8 windows) climbs back, at most twice. */
+  let winStart = 0, winFrames = 0, slowWins = 0, goodWins = 0, upgrades = 0, prevTick = 0;
+  function watchQuality(now: number) {
+    if (prevTick && now - prevTick > 250) {
+      // tab switch, pause or a one-off hitch: start a fresh window
+      winStart = now;
+      winFrames = 0;
+    }
+    prevTick = now;
+    if (!winStart) winStart = now;
+    winFrames++;
+    const span = now - winStart;
+    if (span < 1500) return;
+    const avg = span / winFrames;
+    winStart = now;
+    winFrames = 0;
+    if (avg > 1000 / 45) {
+      goodWins = 0;
+      if (++slowWins >= 2 && tier < qualityTiers.length - 1) {
+        slowWins = 0;
+        setTier(tier + 1);
+      }
+    } else {
+      slowWins = 0;
+      if (avg < 1000 / 57 && ++goodWins >= 8 && tier > 0 && upgrades < 2) {
+        goodWins = 0;
+        upgrades++;
+        setTier(tier - 1);
+      }
+    }
+  }
+  function setTier(next: number) {
+    tier = next;
+    renderer.setPixelRatio(qualityTiers[tier]);
+    room.resize();
+  }
+
   function loop(now: number) {
     raf = 0;
     if (destroyed || paused) return;
+    raf = requestAnimationFrame(loop);
+    watchQuality(now);
+    frameEma += (Math.min(now - last, 250) - frameEma) * 0.1;
     const dt = Math.min(0.05, (now - last) / 1000);
     last = now;
     state.time += dt;
@@ -386,13 +439,12 @@ export function createRoom(canvas: HTMLCanvasElement, opts: RoomOptions = {}): R
     for (const hook of room.frameHooks) hook(dt, state.time);
     if (room.mode === "hero") heroCamFrame(dt);
     renderer.render(scene, camera);
-    raf = requestAnimationFrame(loop);
   }
 
   room.setPaused = (p) => {
     if (destroyed || p === paused) return;
     paused = p;
-    if (!p && !raf) {
+    if (!p && !raf && started) {
       last = performance.now();
       raf = requestAnimationFrame(loop);
     }
@@ -419,13 +471,33 @@ export function createRoom(canvas: HTMLCanvasElement, opts: RoomOptions = {}): R
   };
 
   buildInterior(room);
+  const batch = mergeStatic(scene);
   room.tour = createTour(room, applyOffset);
   room.applyTime(opts.hour ?? 13);
   room.resize();
+
+  room.stats = () => ({
+    fps: Math.round(1000 / frameEma),
+    frameMs: Math.round(frameEma * 10) / 10,
+    calls: renderer.info.render.calls,
+    triangles: renderer.info.render.triangles,
+    dpr: qualityTiers[tier],
+    meshes: batch,
+  });
   // The canvas box changes on window resize and when the tour pins it full-screen.
   const ro = new ResizeObserver(() => room.resize());
   ro.observe(canvas);
   abort.signal.addEventListener("abort", () => ro.disconnect());
-  raf = requestAnimationFrame(loop);
+  /* Compile every shader off the critical path (KHR_parallel_shader_compile when available),
+     then start rendering: no first-frame freeze, and the canvas can fade in on a finished image. */
+  room.ready = renderer
+    .compileAsync(scene, camera)
+    .catch(() => undefined)
+    .then(() => {
+      if (destroyed) return;
+      started = true;
+      last = performance.now();
+      if (!paused && !raf) raf = requestAnimationFrame(loop);
+    });
   return room;
 }

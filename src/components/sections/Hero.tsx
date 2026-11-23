@@ -39,7 +39,7 @@ export function Hero({ dict, locale }: { dict: Dictionary; locale: Locale }) {
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
+        className="nn-hero-aurora pointer-events-none absolute inset-0 -z-10 overflow-hidden"
         style={{
           maskImage: "linear-gradient(to bottom, #000 58%, transparent)",
           WebkitMaskImage: "linear-gradient(to bottom, #000 58%, transparent)",
