@@ -25,6 +25,10 @@
   --aurora-3: rgba(150, 92, 224, 0.38);
   --header-tint: rgba(232, 114, 44, 0.08);
   --hero-top: #171b22;
+  /* v2 hero: scrim over the 3D office + frosted glass */
+  --scrim: 12, 13, 16;
+  --glass: rgba(14, 15, 24, 0.66);
+  --glass-line: rgba(255, 255, 255, 0.16);
 }
 
 :root[data-theme="light"] {
@@ -50,6 +54,9 @@
   --aurora-3: rgba(150, 92, 224, 0.22);
   --header-tint: rgba(198, 85, 27, 0.06);
   --hero-top: #ffffff;
+  --scrim: 247, 246, 243;
+  --glass: rgba(255, 252, 246, 0.74);
+  --glass-line: rgba(22, 19, 29, 0.18);
 }
 
 /* ---- Map tokens to Tailwind theme (bg-surface, text-fg, …) ----------- */
@@ -403,4 +410,236 @@ body {
   .nn-stack-draw  { animation: none; stroke-dasharray: none; stroke-dashoffset: 0; }
   .nn-stack-flow  { animation: none; stroke-dasharray: none; }
   .nn-node-float  { animation: none; transform: none; }
+}
+
+/* ---- v2 hero: 3D office, glass, certificate, tour mode -------------- */
+.nn-glass {
+  background: var(--glass);
+  border: 1px solid var(--glass-line);
+  backdrop-filter: blur(16px) saturate(1.3);
+  -webkit-backdrop-filter: blur(16px) saturate(1.3);
+}
+
+.nn-stage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  outline: none;
+  pointer-events: none;
+  touch-action: none;
+}
+html[data-tour="on"] .nn-stage {
+  pointer-events: auto;
+  cursor: grab;
+}
+/* While touring, the scene is pinned to the viewport whatever the hero's height. */
+html[data-tour="on"] .nn-scene-host {
+  position: fixed;
+  inset: 0;
+  z-index: 4;
+}
+
+/* Legibility veil: solid behind the copy on the left, clear over the room on the
+   right, and fading into the page background at the bottom edge. */
+.nn-scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transition: opacity 0.7s ease;
+  background:
+    linear-gradient(0deg, rgb(var(--scrim)) 0%, rgba(var(--scrim), 0) 22%),
+    linear-gradient(90deg, rgba(var(--scrim), 0.95) 0%, rgba(var(--scrim), 0.88) 36%, rgba(var(--scrim), 0.45) 58%, rgba(var(--scrim), 0) 82%);
+}
+@media (max-width: 980px) {
+  .nn-scrim {
+    background:
+      linear-gradient(0deg, rgb(var(--scrim)) 0%, rgba(var(--scrim), 0) 22%),
+      linear-gradient(180deg, rgba(var(--scrim), 0.9), rgba(var(--scrim), 0.8));
+  }
+}
+
+.nn-hero-copy,
+.nn-cert {
+  transition: opacity 0.5s ease, transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Tour mode: the page chrome and hero copy step aside, the HUD fades in. */
+.nn-site-header,
+.nn-lang-switch {
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.4s;
+}
+html[data-tour="on"] .nn-site-header {
+  transform: translateY(-110%);
+  opacity: 0;
+  pointer-events: none;
+}
+html[data-tour="on"] .nn-lang-switch {
+  opacity: 0;
+  pointer-events: none;
+}
+html[data-tour="on"] .nn-scrim {
+  opacity: 0;
+}
+html[data-tour="on"] .nn-hero-copy {
+  opacity: 0;
+  transform: translateX(-40px);
+  pointer-events: none;
+}
+html[data-tour="on"] .nn-cert {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(24px);
+}
+
+.nn-hud {
+  position: fixed;
+  inset: 0;
+  z-index: 6;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.6s 0.5s;
+}
+html[data-tour="on"] .nn-hud {
+  opacity: 1;
+}
+
+.nn-tour-btn {
+  animation: nn-tour-pulse 2.8s infinite;
+}
+@keyframes nn-tour-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 138, 61, 0.45);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 138, 61, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 138, 61, 0);
+  }
+}
+
+/* Framed certificate hanging bottom-right of the hero. */
+/* Anchored to the first screen (not the hero's bottom) so it never hangs below the fold. */
+.nn-cert {
+  position: absolute;
+  right: 56px;
+  top: max(160px, calc(100svh - 64px - 168px));
+  width: 372px;
+  z-index: 3;
+  display: block;
+  text-decoration: none;
+  color: #1d1a15;
+  transform-origin: 50% 0;
+  filter: drop-shadow(0 22px 22px rgba(0, 0, 0, 0.35));
+}
+.nn-cert:hover {
+  transform: translateY(-4px) rotate(-0.8deg);
+}
+.nn-cert:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+.nn-cert-nail {
+  position: absolute;
+  left: 50%;
+  top: -9px;
+  width: 12px;
+  height: 12px;
+  margin-left: -6px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fff, #8c8c8c 60%, #444);
+  z-index: 2;
+}
+.nn-cert-frame {
+  display: block;
+  padding: 11px;
+  border-radius: 5px;
+  background: linear-gradient(135deg, #d3a76f, #a8773f 45%, #c9a06b 70%, #9a6a36);
+}
+.nn-cert-mat {
+  display: block;
+  padding: 18px 20px 16px;
+  background: #f7f2e8;
+  border: 1px solid #c9b48a;
+  box-shadow: inset 0 0 0 5px #f7f2e8, inset 0 0 0 6px #d9c9a6;
+}
+.nn-cert-row {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+.nn-cert-seal {
+  flex: none;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #d96b2b;
+  color: #fff7ee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.nn-cert-txt {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+.nn-cert-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #6a5f4e;
+}
+.nn-cert-title {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 700;
+  font-size: 19px;
+  line-height: 1.22;
+  color: #1d1a15;
+}
+.nn-cert-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid #d9c9a6;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: #6a5f4e;
+}
+.nn-cert-foot b {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  color: #a8480a;
+}
+@media (max-width: 1180px) {
+  .nn-cert {
+    position: relative;
+    right: auto;
+    top: auto;
+    width: min(372px, 100%);
+    margin-top: 34px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nn-tour-btn {
+    animation: none;
+  }
+  .nn-hero-copy,
+  .nn-cert,
+  .nn-site-header,
+  .nn-lang-switch,
+  .nn-scrim,
+  .nn-hud {
+    transition-duration: 0.01s;
+  }
 }

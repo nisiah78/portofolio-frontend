@@ -56,5 +56,68 @@
     "close": "fermer",
     "result": "résultat",
     "results": "résultats"
+  },
+  "office": {
+    "tour": "Visiter mon bureau en 3D",
+    "exit": "Quitter la visite",
+    "certEyebrow": "Certification",
+    "certAria": "Ouvrir la certification Claude Certified Architect – Foundations sur Credly (nouvel onglet)",
+    "verify": "Vérifier sur Credly",
+    "close": "Fermer",
+    "clockLabel": "Heure et météo du bureau",
+    "canvasLabel": "Bureau de Nomena en 3D",
+    "stationsLabel": "Stations de la visite",
+    "hintDrag": "Glisser",
+    "hintDragTxt": "pour regarder",
+    "hintWheel": "Molette",
+    "hintWheelTxt": "pour zoomer",
+    "hintRing": "Cercle orange",
+    "hintRingTxt": "pour marcher",
+    "sky": {
+      "night": "nuit",
+      "dawn": "aube",
+      "dusk": "crépuscule",
+      "clear": "ciel dégagé",
+      "cloudy": "nuageux",
+      "rain": "pluie"
+    },
+    "st": {
+      "entry": "Entrée",
+      "desk": "Poste de travail",
+      "cert": "Certification",
+      "infra": "Coin réseau",
+      "windows": "Fenêtres rouges",
+      "terrace": "Terrasse"
+    },
+    "info": {
+      "stack": [
+        "Poste de travail",
+        "Symfony, PHP, TypeScript, Next.js, Java et Python — typé de bout en bout, de l'API à l'interface."
+      ],
+      "ai": [
+        "Claude à portée de main",
+        "Le terminal où je travaille avec Claude pour livrer jusqu'à 10x plus vite, avec une meilleure qualité."
+      ],
+      "infra": [
+        "Coin réseau",
+        "Le routeur et le matériel réseau : tout ce qui est sur le bureau est connecté d'ici."
+      ],
+      "cert": [
+        "Claude Certified Architect – Foundations",
+        "Certification Anthropic, vérifiable sur Credly."
+      ],
+      "cup": [
+        "Gourde bleue",
+        "L'hydratation d'abord, les déploiements ensuite."
+      ],
+      "plant": [
+        "Succulente",
+        "La seule dépendance qui ne casse jamais."
+      ],
+      "chair": [
+        "Fauteuil gamer",
+        "Noir et rouge. C'est ici que se font les longs refactorings."
+      ]
+    }
   }
 }

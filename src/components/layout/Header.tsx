@@ -11,6 +11,7 @@ import {
   Sparkles,
   User,
 } from "lucide-react";
+import { OfficeClock, TourButton } from "@/components/hero/TourControls";
 import { Container } from "@/components/ui/Container";
 import { LimelightNav, type LimelightNavItem } from "@/components/ui/limelight-nav";
 import { profile } from "@/data/profile";
@@ -112,7 +113,7 @@ export function Header({
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 transition-[background,border-color,box-shadow] duration-300",
+        "nn-site-header sticky top-0 z-50 transition-[background,border-color,box-shadow] duration-300",
         scrolled
           ? "border-b border-transparent bg-transparent"
           : "border-b border-line backdrop-blur-md",
@@ -218,8 +219,10 @@ export function Header({
             </button>
           </div>
 
-          {/* Right: window actions */}
+          {/* Right: office clock, 3D tour, theme */}
           <div className="flex items-center justify-end gap-2">
+            <OfficeClock className="hidden min-[1200px]:flex" />
+            <TourButton />
             <ThemeToggle />
           </div>
         </Container>
@@ -244,6 +247,7 @@ export function Header({
             onTabChange={setActiveIndex}
           />
           <div className="flex items-center gap-2">
+            <TourButton compact />
             <ThemeToggle />
           </div>
         </Container>

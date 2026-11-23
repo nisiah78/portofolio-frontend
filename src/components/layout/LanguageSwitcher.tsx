@@ -15,7 +15,7 @@ export function LanguageSwitcher({ locale }: { locale: Locale }) {
   };
 
   return (
-    <div className="pointer-events-none fixed inset-y-0 left-3 z-40 flex items-center sm:left-4">
+    <div className="nn-lang-switch pointer-events-none fixed inset-y-0 left-3 z-40 flex items-center sm:left-4">
       <div
         role="group"
         aria-label="Language"

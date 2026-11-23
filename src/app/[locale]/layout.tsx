@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { OfficeTourProvider } from "@/components/hero/OfficeTourProvider";
 import { CodeMist } from "@/components/ui/CodeMist";
 import { SiteChrome } from "@/components/layout/SiteChrome";
 import { Footer } from "@/components/layout/Footer";
@@ -66,10 +67,12 @@ export default async function LocaleLayout({
     >
       <body>
         <ThemeProvider>
-          <CodeMist />
-          <SiteChrome dict={dict} locale={locale as Locale} />
-          {children}
-          <Footer />
+          <OfficeTourProvider t={dict.office}>
+            <CodeMist />
+            <SiteChrome dict={dict} locale={locale as Locale} />
+            {children}
+            <Footer />
+          </OfficeTourProvider>
         </ThemeProvider>
       </body>
     </html>

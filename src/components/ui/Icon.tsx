@@ -17,6 +17,7 @@ import {
   Moon,
   Medal,
   Code2,
+  Coffee,
   type LucideIcon,
 } from "lucide-react";
 
@@ -40,6 +41,7 @@ const icons = {
   moon: Moon,
   medal: Medal,
   "code-2": Code2,
+  coffee: Coffee,
 } satisfies Record<string, LucideIcon>;
 
 export type IconName = keyof typeof icons;

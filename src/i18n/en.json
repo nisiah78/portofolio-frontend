@@ -56,5 +56,68 @@
     "close": "close",
     "result": "result",
     "results": "results"
+  },
+  "office": {
+    "tour": "Visit my 3D office",
+    "exit": "Leave the tour",
+    "certEyebrow": "Certification",
+    "certAria": "Open the Claude Certified Architect – Foundations certification on Credly (new tab)",
+    "verify": "Verify on Credly",
+    "close": "Close",
+    "clockLabel": "Office time and weather",
+    "canvasLabel": "Nomena's office in 3D",
+    "stationsLabel": "Tour stops",
+    "hintDrag": "Drag",
+    "hintDragTxt": "to look around",
+    "hintWheel": "Wheel",
+    "hintWheelTxt": "to zoom",
+    "hintRing": "Orange ring",
+    "hintRingTxt": "to walk there",
+    "sky": {
+      "night": "night",
+      "dawn": "dawn",
+      "dusk": "dusk",
+      "clear": "clear sky",
+      "cloudy": "cloudy",
+      "rain": "rain"
+    },
+    "st": {
+      "entry": "Entrance",
+      "desk": "Workstation",
+      "cert": "Certification",
+      "infra": "Network corner",
+      "windows": "Red windows",
+      "terrace": "Terrace"
+    },
+    "info": {
+      "stack": [
+        "Workstation",
+        "Symfony, PHP, TypeScript, Next.js, Java and Python — typed end to end, from API to UI."
+      ],
+      "ai": [
+        "Claude within reach",
+        "The terminal where I work with Claude to ship up to 10x faster, with higher quality."
+      ],
+      "infra": [
+        "Network corner",
+        "The router and network gear: everything on the desk stays connected from here."
+      ],
+      "cert": [
+        "Claude Certified Architect – Foundations",
+        "Anthropic certification, verifiable on Credly."
+      ],
+      "cup": [
+        "Blue flask",
+        "Hydration first, deploys second."
+      ],
+      "plant": [
+        "Succulent",
+        "The only dependency that never breaks."
+      ],
+      "chair": [
+        "Gaming chair",
+        "Black and red. Where the long refactors happen."
+      ]
+    }
   }
 }

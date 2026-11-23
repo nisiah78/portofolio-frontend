@@ -56,5 +56,68 @@
     "close": "schließen",
     "result": "Ergebnis",
     "results": "Ergebnisse"
+  },
+  "office": {
+    "tour": "Mein 3D-Büro besuchen",
+    "exit": "Rundgang beenden",
+    "certEyebrow": "Zertifizierung",
+    "certAria": "Zertifizierung Claude Certified Architect – Foundations auf Credly öffnen (neuer Tab)",
+    "verify": "Auf Credly prüfen",
+    "close": "Schließen",
+    "clockLabel": "Uhrzeit und Wetter im Büro",
+    "canvasLabel": "Nomenas Büro in 3D",
+    "stationsLabel": "Stationen des Rundgangs",
+    "hintDrag": "Ziehen",
+    "hintDragTxt": "zum Umsehen",
+    "hintWheel": "Mausrad",
+    "hintWheelTxt": "zum Zoomen",
+    "hintRing": "Oranger Ring",
+    "hintRingTxt": "zum Hingehen",
+    "sky": {
+      "night": "Nacht",
+      "dawn": "Morgendämmerung",
+      "dusk": "Abenddämmerung",
+      "clear": "klarer Himmel",
+      "cloudy": "bewölkt",
+      "rain": "Regen"
+    },
+    "st": {
+      "entry": "Eingang",
+      "desk": "Arbeitsplatz",
+      "cert": "Zertifizierung",
+      "infra": "Netzwerk-Ecke",
+      "windows": "Rote Fenster",
+      "terrace": "Terrasse"
+    },
+    "info": {
+      "stack": [
+        "Arbeitsplatz",
+        "Symfony, PHP, TypeScript, Next.js, Java und Python — durchgängig typisiert, von der API bis zur UI."
+      ],
+      "ai": [
+        "Claude in Reichweite",
+        "Das Terminal, in dem ich mit Claude arbeite, um bis zu 10x schneller und besser zu liefern."
+      ],
+      "infra": [
+        "Netzwerk-Ecke",
+        "Router und Netzwerktechnik: Alles auf dem Schreibtisch ist von hier aus verbunden."
+      ],
+      "cert": [
+        "Claude Certified Architect – Foundations",
+        "Anthropic-Zertifizierung, prüfbar auf Credly."
+      ],
+      "cup": [
+        "Blaue Flasche",
+        "Erst trinken, dann deployen."
+      ],
+      "plant": [
+        "Sukkulente",
+        "Die einzige Abhängigkeit, die nie bricht."
+      ],
+      "chair": [
+        "Gaming-Stuhl",
+        "Schwarz und rot. Hier entstehen die langen Refactorings."
+      ]
+    }
   }
 }
