@@ -33,7 +33,7 @@ export function TourButton({ compact = false, className }: { compact?: boolean; 
       aria-label={t.tour}
       title={t.tour}
       className={cn(
-        "nn-tour-btn flex h-7 shrink-0 items-center justify-center gap-1.5 rounded-md bg-accent font-mono text-[12px] font-semibold text-[#1b0f05] transition-transform hover:-translate-y-px",
+        "nn-tour-btn flex h-7 shrink-0 items-center justify-center gap-1.5 rounded-md bg-accent font-mono text-[12px] font-semibold text-accent-ink transition-transform hover:-translate-y-px",
         compact ? "w-9 rounded-full h-9" : "w-7 min-[1100px]:w-auto min-[1100px]:px-2.5",
         className,
       )}

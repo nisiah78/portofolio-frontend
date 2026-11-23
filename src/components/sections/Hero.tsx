@@ -135,7 +135,7 @@ export function Hero({ dict, locale }: { dict: Dictionary; locale: Locale }) {
             <Reveal className="flex flex-wrap items-center gap-3">
               <Link
                 href="#work"
-                className="flex min-h-11 items-center gap-2.5 rounded-[10px] bg-accent px-5 font-mono text-[15px] font-semibold text-[#1b0f05] transition-transform hover:-translate-y-0.5"
+                className="flex min-h-11 items-center gap-2.5 rounded-[10px] bg-accent px-5 font-mono text-[15px] font-semibold text-accent-ink transition-transform hover:-translate-y-0.5"
               >
                 <Icon name="arrow-right" size={18} />
                 {dict.cta.work}

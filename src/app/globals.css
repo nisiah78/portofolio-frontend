@@ -13,6 +13,7 @@
   --header-bg: rgba(12, 13, 16, 0.82);
   --accent: #e8722c;
   --accent-soft: rgba(232, 114, 44, 0.13);
+  --accent-ink: #ffffff; /* text on accent fills — white in both themes */
   --syn-str: #7fb77e;
   --syn-num: #7aa2d6;
   /* cloudscape — luminous fog on a dark sky */
@@ -42,6 +43,7 @@
   --header-bg: rgba(247, 246, 243, 0.82);
   --accent: #c6551b;
   --accent-soft: rgba(198, 85, 27, 0.1);
+  --accent-ink: #ffffff;
   --syn-str: #3f7a43;
   --syn-num: #2e5ea8;
   /* cloudscape — pure white cumulus (definition comes from the code mist behind) */
@@ -69,6 +71,7 @@
   --color-line: var(--line);
   --color-accent: var(--accent);
   --color-accent-soft: var(--accent-soft);
+  --color-accent-ink: var(--accent-ink);
   --color-syn-str: var(--syn-str);
   --color-syn-num: var(--syn-num);
   --font-mono: var(--font-ibm-plex-mono), ui-monospace, monospace;
